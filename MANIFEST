@@ -4,6 +4,7 @@ lib/Data/Collector.pm
 lib/Data/Collector/App.pm
 lib/Data/Collector/Engine.pm
 lib/Data/Collector/Engine/OpenSSH.pm
+lib/Data/Collector/Engine/Local.pm
 lib/Data/Collector/Info.pm
 lib/Data/Collector/Info/Memory.pm
 lib/Data/Collector/Serializer/DataDumper.pm
