@@ -13,22 +13,18 @@ sub load {
 }
 
 sub _build_raw_data {
-    my $self   = shift;
-    my $engine = $self->engine;
-
-    return $engine->run('cat /proc/cpuinfo');
+    my $self = shift;
+    return $self->engine->run('cat /proc/cpuinfo');
 }
 
 sub all {
-    my $self    = shift;
-    my %results = (
+    my $self = shift;
+    return {
         number_of_cpus => $self->count,
         cpu_mhz        => $self->mhz,
         cpu_model      => $self->model,
         cpu_flags      => $self->flags,
-    );
-
-    return \%results;
+    };
 }
 
 sub count {
@@ -39,23 +35,17 @@ sub count {
 
 sub mhz {
     my $self = shift;
-    my $data = $self->raw_data;
-
-    return $1 if $data =~ /^cpu MHz\s+\:\s+(.+)\n/m;
+    return $1 if $self->raw_data =~ /^cpu MHz\s+\:\s+(.+)\n/m;
 }
 
 sub model {
     my $self = shift;
-    my $data = $self->raw_data;
-
-    return $1 if $data =~ /^model name\s+\:\s+(.+)\n/m;
+    return $1 if $self->raw_data =~ /^model name\s+\:\s+(.+)\n/m;
 }
 
 sub flags {
     my $self = shift;
-    my $data = $self->raw_data;
-
-    return $1 if $data =~ /^flags\s+:\s+(.+)\n/m;
+    return $1 if $self->raw_data =~ /^flags\s+:\s+(.+)\n/m;
 }
 
 __PACKAGE__->meta->make_immutable;

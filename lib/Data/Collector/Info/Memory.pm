@@ -11,34 +11,26 @@ sub load {
 }
 
 sub _build_raw_data {
-    my $self   = shift;
-    my $engine = $self->engine;
-
-    return $engine->run('cat /proc/meminfo');
+    my $self = shift;
+    return $self->engine->run('cat /proc/meminfo');
 }
 
 sub all {
-    my $self    = shift;
-    my %results = (
+    my $self = shift;
+    return {
         total_memory => $self->total,
         free_memory  => $self->free,
-    );
-
-    return \%results;
+    };
 }
 
 sub total {
     my $self = shift;
-    my $data = $self->raw_data;
-
-    return $1 if $data =~ /MemTotal\:\s+(\d+)\skB/;
+    return $1 if $self->raw_data =~ /MemTotal\:\s+(\d+)\skB/;
 }
 
 sub free {
     my $self = shift;
-    my $data = $self->raw_data;
-
-    return $1 if $data =~ /MemFree\:\s+(\d+)\skB/;
+    return $1 if $self->raw_data =~ /MemFree\:\s+(\d+)\skB/;
 }
 
 __PACKAGE__->meta->make_immutable;
