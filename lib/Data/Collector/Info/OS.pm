@@ -9,6 +9,7 @@ extends 'Data::Collector::Info';
 has [ qw/ os_name os_version os_distro / ] => (
     is => 'rw', isa => 'Str'
 );
+
 has 'types' => (
     is      => 'ro',
     isa     => 'HashRef[HashRef[Str|CodeRef]]',
@@ -23,7 +24,6 @@ has 'types' => (
                     (\d+) (\.\d+)? (?: \s \(Final\) )?
                 /x;
 
-                print "DATA: $data\n";
                 if ( $data =~ $regex ) {
                     $self->os_version( $2 ? $1 . $2 : $1 );
                 }
