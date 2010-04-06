@@ -11,10 +11,20 @@ has 'connected' => (
     default   => 0,
 );
 
+has 'test' => ( is => 'ro', isa => 'Str', default => '/usr/bin/test' );
+has 'echo' => ( is => 'ro', isa => 'Str', default => '/bin/echo'     );
+
 # basic overridable methods
-sub run        { die 'No default run method' }
-sub connect    {1}
-sub disconnect {1}
+sub run         { die 'No default run method' }
+sub connect     {1}
+sub disconnect  {1}
+sub file_exists {
+    my ( $self, $file ) = @_;
+    my $test = $self->test;
+    my $echo = $self->echo;
+    my $cmd  = "$test -f $file ; $echo \$?";
+    return $self->run($cmd);
+}
 
 __PACKAGE__->meta->make_immutable;
 1;
