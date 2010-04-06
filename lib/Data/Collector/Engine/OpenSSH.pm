@@ -5,8 +5,6 @@ use Net::OpenSSH;
 use MooseX::StrictConstructor;
 use namespace::autoclean;
 
-our $VERSION = '0.01';
-
 extends 'Data::Collector::Engine';
 
 has '+name'  => ( default => 'OpenSSH' );
