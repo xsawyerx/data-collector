@@ -119,6 +119,21 @@ If you do not provide a run method, your engine will die, literally! :)
 
 A I<disconnect> is attempted if the I<connected> boolean is set.
 
+=head2 file_exists
+
+Tries to run C<test -f file ; echo $?> to check if a file exists. You can
+subclass it if you're doing it differently (or don't want to support it).
+
+    $engine->check_files('file');
+
+You can also change the path of C<test> and C<echo> from C</usr/bin/test> and
+C</bin/echo> (respectively) to whatever you want using I<engine_args>.
+
+    engine_args => {
+        test => '/usr/local/bin/test',
+        echo => '/usr/local/bin/echo',
+    }
+
 =head1 AUTHOR
 
 Sawyer X, C<< <xsawyerx at cpan.org> >>
