@@ -14,7 +14,8 @@ has 'engine'   => ( is => 'ro', isa => 'Object'  );
 my $REGISTRY = Set::Object->new();
 
 sub register_keys {
-    my @keys = @_;
+    my $class = shift;
+    my @keys  = @_;
 
     foreach my $key (@keys) {
         if ( first { $key eq $_ } $REGISTRY->members ) {
