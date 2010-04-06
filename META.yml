@@ -1,0 +1,53 @@
+---
+abstract: "Collect information from multiple sources - like Puppet's\nFacter"
+author:
+  - 'Sawyer X <xsawyerx@cpan.org>'
+build_requires:
+  Sub::Override: 0
+  Test::Exception: 0
+  Test::More: 0
+configure_requires:
+  Module::Build: 0.36
+generated_by: 'Module::Build version 0.3603'
+license: perl
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: Data-Collector
+provides:
+  Data::Collector:
+    file: lib/Data/Collector.pm
+    version: 0.01
+  Data::Collector::App:
+    file: lib/Data/Collector/App.pm
+  Data::Collector::Engine:
+    file: lib/Data/Collector/Engine.pm
+  Data::Collector::Engine::OpenSSH:
+    file: lib/Data/Collector/Engine/OpenSSH.pm
+    version: 0.01
+  Data::Collector::Info:
+    file: lib/Data/Collector/Info.pm
+  Data::Collector::Info::Memory:
+    file: lib/Data/Collector/Info/Memory.pm
+  Data::Collector::Serializer::DataDumper:
+    file: lib/Data/Collector/Serializer/DataDumper.pm
+  Data::Collector::Serializer::JSON:
+    file: lib/Data/Collector/Serializer/JSON.pm
+  Data::Collector::Serializer::SimpleXML:
+    file: lib/Data/Collector/Serializer/SimpleXML.pm
+  Data::Collector::Serializer::SmartXML:
+    file: lib/Data/Collector/Serializer/SmartXML.pm
+  Data::Collector::Serializer::YAML:
+    file: lib/Data/Collector/Serializer/YAML.pm
+requires:
+  Data::Dumper: 0
+  JSON: 0
+  Module::Pluggable: 0
+  Moose: 0
+  MooseX::StrictConstructor: 0
+  Net::OpenSSH: 0
+  Set::Object: 0
+  namespace::autoclean: 0
+resources:
+  license: http://dev.perl.org/licenses/
+version: 0.01

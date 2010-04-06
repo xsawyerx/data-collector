@@ -1,0 +1,10 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+
+use lib 'lib';
+use Data::Collector::App;
+
+my $app = Data::Collector::App->new_with_options;
+
+exit $app->run;
