@@ -105,14 +105,6 @@ Version 0.01
 This module collects various information from multiple sources and makes it
 available in different formats.
 
-The main purpose is to facilitate an information gatherning subsystem, much
-like Puppet's Facter, to be used in system monitoring and administration.
-
-However, Data::Collector is much more dynamic. It supports any number of engines
-and formats. Thus, it can be used for push or pull situations, can work with
-monitoring systems, integrate with testing suites and otherwise a pretty wide
-variety of situations.
-
     use Data::Collector;
 
     my $collector = Data::Collector->new(
@@ -123,6 +115,20 @@ variety of situations.
 
     my %data = $collector->collect;
     ...
+
+An important concept in Data::Collector is that it does not use any modules to
+fetch the information, only shell commands. This might seem like a pain at first
+but it allows it to be run on remote machines without any RPC server/client
+set up. It might be changed in the future, but (at least now) it seems unlikely.
+
+The main purpose of Data::Collector is to facilitate an information gatherning
+subsystem, much like Puppet's Facter, to be used in system monitoring and
+administration.
+
+However, Data::Collector is much more dynamic. It supports any number of engines
+and formats. Thus, it can be used for push or pull situations, can work with
+monitoring systems, integrate with testing suites and otherwise a pretty wide
+variety of situations.
 
 =head1 ATTRIBUTES
 
