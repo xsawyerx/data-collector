@@ -1,14 +1,15 @@
 Build.PL
 Changes
 lib/Data/Collector.pm
-lib/Data/Collector/Commands.pm
 lib/Data/Collector/App.pm
+lib/Data/Collector/Commands.pm
 lib/Data/Collector/Engine.pm
 lib/Data/Collector/Engine/Local.pm
 lib/Data/Collector/Engine/OpenSSH.pm
 lib/Data/Collector/Info.pm
 lib/Data/Collector/Info/CPU.pm
 lib/Data/Collector/Info/ExternalIP.pm
+lib/Data/Collector/Info/IFaces.pm
 lib/Data/Collector/Info/Memory.pm
 lib/Data/Collector/Info/OS.pm
 lib/Data/Collector/Serializer/DataDumper.pm
@@ -18,7 +19,6 @@ lib/Data/Collector/Serializer/SmartXML.pm
 lib/Data/Collector/Serializer/YAML.pm
 Makefile.PL
 MANIFEST			This list of files
-MANIFEST.SKIP
 META.yml
 README
 script/data-collector
