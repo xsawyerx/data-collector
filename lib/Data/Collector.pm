@@ -6,7 +6,7 @@ use MooseX::StrictConstructor;
 use Module::Pluggable::Object;
 use namespace::autoclean;
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 has 'collected'     => ( is => 'rw', isa => 'Bool',    default => 0          );
 has 'format'        => ( is => 'ro', isa => 'Str',     default => 'JSON'     );
@@ -98,7 +98,7 @@ Facter
 
 =head1 VERSION
 
-Version 0.01
+Version 0.04
 
 =head1 SYNOPSIS
 
