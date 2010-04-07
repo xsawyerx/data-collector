@@ -5,6 +5,7 @@ use MooseX::StrictConstructor;
 use namespace::autoclean;
 
 extends 'Data::Collector::Info';
+with    'Data::Collector::Commands';
 
 has [ qw/ os_name os_version os_distro / ] => (
     is => 'rw', isa => 'Str'
@@ -42,13 +43,14 @@ sub all {
     my $self   = shift;
     my %types  = %{ $self->types };
     my $engine = $self->engine;
+    my $cat    = $self->get_command('cat');
 
     foreach my $distro ( keys %types ) {
         my $file = $types{$distro}->{'file'};
         my $cb   = $types{$distro}->{'version'};
 
         if ( $self->engine->file_exists($file) ) {
-            my $data = $self->engine->run("cat $file");
+            my $data = $self->engine->run("$cat $file");
             if ( $cb->( $self, $data ) ) {
                 $self->os_name( $types{$distro}->{'name'} );
                 $self->os_distro($distro);

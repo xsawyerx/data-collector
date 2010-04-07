@@ -7,6 +7,7 @@ use MooseX::StrictConstructor;
 use namespace::autoclean;
 
 extends 'Data::Collector::Info';
+with    'Data::Collector::Commands';
 
 has 'url' => (
     is      => 'ro',
@@ -19,7 +20,8 @@ sub load { Data::Collector::Info->register_keys('external_ip') }
 sub _build_raw_data {
     my $self = shift;
     my $url  = $self->url;
-    my $data = $self->engine->run("curl $url 2>/dev/null");
+    my $curl = $self->get_command('curl');
+    my $data = $self->engine->run("$curl $url 2>/dev/null");
 
     if ( $data =~ /(\d+\.\d+\.\d+\.\d+)/ ) {
         return $1;

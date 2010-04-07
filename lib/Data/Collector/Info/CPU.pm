@@ -5,6 +5,7 @@ use MooseX::StrictConstructor;
 use namespace::autoclean;
 
 extends 'Data::Collector::Info';
+with    'Data::Collector::Commands';
 
 sub load {
     Data::Collector::Info->register_keys( qw/
@@ -14,7 +15,8 @@ sub load {
 
 sub _build_raw_data {
     my $self = shift;
-    return $self->engine->run('cat /proc/cpuinfo');
+    my $cat  = $self->get_command('cat');
+    return $self->engine->run("$cat /proc/cpuinfo");
 }
 
 sub all {
