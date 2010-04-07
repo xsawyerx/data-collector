@@ -28,19 +28,19 @@ sub ifaces {
     my $ignores       = $self->ignore_ip;
     my %ifaces        = ();
     my $current_iface = q{};
-
+    my $iface_regex   = qr/^ (.+) \s+ Link /x;
+    my $ip_regex      = qr/ addr \: (\d+\.\d+\.\d+\.\d+) /x;
     chomp @data;
 
 IFACE:
     foreach my $line (@data) {
-        if ( $line =~ /^ (.+) \s+ Link/x ) {
+        if ( $line =~ $iface_regex ) {
             $current_iface = $1;
         }
 
-        # doesn't make sense
         $current_iface =~ s/\s+$//;
 
-        if ( $line =~ / addr \: (\d+\.\d+\.\d+\.\d+) /x ) {
+        if ( $line =~ $ip_regex ) {
             my $ip = $1;
 
             foreach my $ignore_ip ( @{$ignores} ) {
