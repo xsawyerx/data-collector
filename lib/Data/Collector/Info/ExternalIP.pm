@@ -21,7 +21,7 @@ sub _build_raw_data {
     my $url  = $self->url;
     my $data = $self->engine->run("curl $url 2>/dev/null");
 
-    if ( $data =~ /(\d+)\.(\d+)\.(\d+)\.(\d+)/ ) {
+    if ( $data =~ /(\d+\.\d+\.\d+\.\d+)/ ) {
         return $1;
     }
 
