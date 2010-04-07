@@ -17,9 +17,11 @@ name: Data-Collector
 provides:
   Data::Collector:
     file: lib/Data/Collector.pm
-    version: 0.02
+    version: 0.03
   Data::Collector::App:
     file: lib/Data/Collector/App.pm
+  Data::Collector::Commands:
+    file: lib/Data/Collector/Commands.pm
   Data::Collector::Engine:
     file: lib/Data/Collector/Engine.pm
   Data::Collector::Engine::Local:
@@ -57,4 +59,4 @@ requires:
   namespace::autoclean: 0
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.02
+version: 0.03
