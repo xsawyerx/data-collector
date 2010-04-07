@@ -6,7 +6,17 @@ use warnings;
 use Test::More tests => 7;
 use Test::Exception;
 
+use Sub::Override;
 use Data::Collector;
+use Data::Collector::Info::ExternalIP;
+use Data::Collector::Engine::OpenSSH;
+
+my $sub = Sub::Override->new;
+
+$sub->replace( 'Data::Collector::Engine::OpenSSH::connect' => sub {1} );
+$sub->replace( 'Data::Collector::Info::ExternalIP::_build_raw_data' => sub {
+    return '1.1.1.1';
+} );
 
 {
     package Data::Collector::Engine::MyTest;
@@ -32,12 +42,6 @@ $collector->clear_registry;
 lives_ok { $collector->collect } 'Collecting again';
 
 # fake some engine to allow testing of loading
-use Sub::Override;
-use Data::Collector::Engine::OpenSSH;
-my $sub = Sub::Override->new(
-    'Data::Collector::Engine::OpenSSH::connect' => sub {1}
-);
-
 lives_ok {
     $collector = Data::Collector->new(
         engine      => 'OpenSSH',
