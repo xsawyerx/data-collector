@@ -8,10 +8,11 @@ has 'commands' => (
     isa     => 'HashRef[Str]',
     traits  => ['Hash'],
     default => sub { {
-        cat  => '/bin/cat',
-        test => '/usr/bin/test',
-        echo => '/bin/echo',
-        curl => '/usr/bin/curl',
+        cat      => '/bin/cat',
+        test     => '/usr/bin/test',
+        echo     => '/bin/echo',
+        curl     => '/usr/bin/curl',
+        ifconfig => '/sbin/ifconfig',
     } },
     handles => {
         set_command => 'set',
