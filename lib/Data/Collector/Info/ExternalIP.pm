@@ -1,5 +1,6 @@
 package Data::Collector::Info::ExternalIP;
 
+use Carp;
 use Moose;
 use LWP::UserAgent;
 use MooseX::StrictConstructor;
@@ -18,7 +19,13 @@ sub load { Data::Collector::Info->register_keys('external_ip') }
 sub _build_raw_data {
     my $self = shift;
     my $url  = $self->url;
-    $self->engine->run("curl $url 2>/dev/null");
+    my $data = $self->engine->run("curl $url 2>/dev/null");
+
+    if ( $data =~ /(\d+)\.(\d+)\.(\d+)\.(\d+)/ ) {
+        return $1;
+    }
+
+    croak q{Coulnd't find IP in output};
 }
 
 sub all {
