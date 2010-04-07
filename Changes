@@ -1,6 +1,6 @@
 Revision history for Data-Collector
 
-0.02
+0.02    07.04.10
         * Fixed bug disallowing multiple Infos
         * Adding Data::Collector::Engine::Local
         * Adding Data::Collector::Info::CPU
