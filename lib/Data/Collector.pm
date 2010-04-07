@@ -6,7 +6,7 @@ use MooseX::StrictConstructor;
 use Module::Pluggable::Object;
 use namespace::autoclean;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 has 'collected'     => ( is => 'rw', isa => 'Bool',    default => 0          );
 has 'format'        => ( is => 'ro', isa => 'Str',     default => 'JSON'     );
