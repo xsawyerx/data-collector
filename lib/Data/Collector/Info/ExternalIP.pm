@@ -61,7 +61,7 @@ The key this module takes in the registry is I<external_ip>.
 The URL used to fetch the IP. As stated above, it is now
 I<http://checkip.dyndns.org>.
 
-=head1 METHODS/SUBROUTINES
+=head1 SUBROUTINES/METHODS
 
 =head2 load
 

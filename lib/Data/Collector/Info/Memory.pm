@@ -50,7 +50,7 @@ It would be better to do it using a normalized module. Patches are welcome. :)
 The keys this module takes in the registry are I<free_memory> and
 I<total_memory>.
 
-=head1 METHODS/ATTRIBUTES
+=head1 SUBROUTINES/METHODS
 
 =head2 load
 

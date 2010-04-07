@@ -65,7 +65,7 @@ It would be better to do it using a normalized module. Patches are welcome. :)
 The keys this module takes in the registry are I<number_of_cpus>, I<cpu_mhz>,
 I<cpu_model> and I<cpu_flags>.
 
-=head1 METHODS/ATTRIBUTES
+=head1 SUBROUTINES/METHODS
 
 =head2 load
 

@@ -95,7 +95,7 @@ for it under the name C<_build_raw_data>.
 This contains the object of the engine the info module would be using to fetch
 information. This is set by L<Data::Collector> on initialize.
 
-=head1 METHODS/ATTRIBUTES
+=head1 SUBROUTINES/METHODS
 
 =head2 register_keys
 

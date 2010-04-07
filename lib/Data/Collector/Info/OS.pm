@@ -82,7 +82,7 @@ Current there is only support for CentOS. Patches are welcome. :)
 The keys this module takes in the registry are I<os_name>, I<os_distro> and
 I<os_version>.
 
-=head1 METHODS/ATTRIBUTES
+=head1 SUBROUTINES/METHODS
 
 =head2 load
 
