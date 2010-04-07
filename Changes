@@ -1,8 +1,10 @@
 Revision history for Data-Collector
 
 0.03    07.04.10
-        * Fixed parsing IP from HTML in ExternalIP
         * Script should be named "data-collector", not "data-scanner"
+        * Adding Data::Collector::Commands role
+        * Fixed tests by overriding ExternalIP
+        * Fixed parsing IP from HTML in ExternalIP
 
 0.02    07.04.10
         * Fixed bug disallowing multiple Infos
