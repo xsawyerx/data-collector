@@ -1,6 +1,7 @@
 Build.PL
 Changes
 lib/Data/Collector.pm
+lib/Data/Collector/Commands.pm
 lib/Data/Collector/App.pm
 lib/Data/Collector/Engine.pm
 lib/Data/Collector/Engine/Local.pm
@@ -20,7 +21,7 @@ MANIFEST			This list of files
 MANIFEST.SKIP
 META.yml
 README
-script/data-scanner
+script/data-collector
 t/00-load.t
 t/collector/collect.t
 t/collector/nonexistent_engine.t
