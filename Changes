@@ -5,6 +5,7 @@ Revision history for Data-Collector
         * Adding Data::Collector::IFaces
         * Resolving GH #9, adding run_if_exists to Engine.pm
         * Data::Collector::Commands now has "ifconfig"
+        * Data::Collector::Commands now has "netstat"
         * Some speed improvements
 
 0.03    07.04.10
