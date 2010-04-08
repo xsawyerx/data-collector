@@ -17,7 +17,7 @@ name: Data-Collector
 provides:
   Data::Collector:
     file: lib/Data/Collector.pm
-    version: 0.03
+    version: 0.04
   Data::Collector::App:
     file: lib/Data/Collector/App.pm
   Data::Collector::Commands:
@@ -34,6 +34,8 @@ provides:
     file: lib/Data/Collector/Info/CPU.pm
   Data::Collector::Info::ExternalIP:
     file: lib/Data/Collector/Info/ExternalIP.pm
+  Data::Collector::Info::IFaces:
+    file: lib/Data/Collector/Info/IFaces.pm
   Data::Collector::Info::Memory:
     file: lib/Data/Collector/Info/Memory.pm
   Data::Collector::Info::OS:
@@ -59,4 +61,4 @@ requires:
   namespace::autoclean: 0
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.03
+version: 0.04

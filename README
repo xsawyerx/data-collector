@@ -3,7 +3,7 @@ NAME
     Puppet's Facter
 
 VERSION
-    Version 0.01
+    Version 0.04
 
 SYNOPSIS
     This module collects various information from multiple sources and makes
