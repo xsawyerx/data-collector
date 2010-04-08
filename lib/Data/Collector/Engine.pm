@@ -17,6 +17,7 @@ has 'connected' => (
 sub run         { die 'No default run method' }
 sub connect     {1}
 sub disconnect  {1}
+
 sub file_exists {
     my ( $self, $file ) = @_;
     my $test   = $self->get_command('test');
@@ -26,6 +27,13 @@ sub file_exists {
     $result == 0 and return 1;
 
     return 0;
+}
+
+sub run_if_exists {
+    my ( $self, $file, $opts ) = @_;
+    if ( $self->file_exists($file) ) {
+        $self->run("$cmd $opts");
+    }
 }
 
 __PACKAGE__->meta->make_immutable;
@@ -108,6 +116,10 @@ load but as close as possible to whenever the engine is needed.
 At this point you would probably want to set the I<connected> boolean attribute
 on. Read more below under I<disconnect>.
 
+=head2 disconnect
+
+A I<disconnect> is attempted if the I<connected> boolean is set.
+
 =head2 run
 
 This is the main method of the engine. The arguments are populated by the info
@@ -117,10 +129,6 @@ one at the moment. This should change.
 
 If you do not provide a run method, your engine will die, literally! :)
 
-=head2 disconnect
-
-A I<disconnect> is attempted if the I<connected> boolean is set.
-
 =head2 file_exists
 
 Tries to run C<test -f file ; echo $?> to check if a file exists. You can
@@ -128,6 +136,19 @@ subclass it if you're doing it differently (or don't want to support it).
 
     $engine->check_files('file');
 
+=head2 run_if_exists
+
+A helper hybrid between C<file_exists> and C<run> to ease a common idiom:
+
+    # instead of this:
+    if ( $engine->file_exists($cmd) ) {
+        $engine->run("$cmd $opts");
+    }
+
+    # do this:
+    $engine->run_if_exists("$cmd $opts");
+
 =head1 AUTHOR
 
 Sawyer X, C<< <xsawyerx at cpan.org> >>
+
