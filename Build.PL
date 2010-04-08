@@ -25,6 +25,7 @@ my $builder = Module::Build->new(
     add_to_cleanup       => [ 'Data-Collector-*' ],
     create_makefile_pl   => 'traditional',
     create_readme        => 1,
+    create_license       => 1,
     recursive_test_files => 1,
 );
 
