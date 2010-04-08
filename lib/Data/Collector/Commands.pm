@@ -14,6 +14,7 @@ has 'commands' => (
         curl     => '/usr/bin/curl',
         ifconfig => '/sbin/ifconfig',
         netstat  => '/bin/netstat',
+        readlink => '/usr/bin/readlink',
     } },
     handles => {
         set_command => 'set',
