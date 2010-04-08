@@ -30,8 +30,8 @@ sub file_exists {
 }
 
 sub run_if_exists {
-    my ( $self, $file, $opts ) = @_;
-    if ( $self->file_exists($file) ) {
+    my ( $self, $cmd, $opts ) = @_;
+    if ( $self->file_exists($cmd) ) {
         $self->run("$cmd $opts");
     }
 }
