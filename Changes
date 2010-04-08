@@ -1,7 +1,9 @@
 Revision history for Data-Collector
 
 0.04
+        * Fixed file_exists() in Engine.pm
         * Adding Data::Collector::IFaces
+        * Resolving GH #9, adding run_if_exists to Engine.pm
         * Data::Collector::Commands now has "ifconfig"
         * Some speed improvements
 
