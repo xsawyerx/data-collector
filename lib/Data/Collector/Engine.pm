@@ -19,10 +19,13 @@ sub connect     {1}
 sub disconnect  {1}
 sub file_exists {
     my ( $self, $file ) = @_;
-    my $test = $self->get_command('test');
-    my $echo = $self->get_command('echo');
-    my $cmd  = "$test -f $file ; $echo \$?";
-    return $self->run($cmd);
+    my $test   = $self->get_command('test');
+    my $echo   = $self->get_command('echo');
+    my $cmd    = "$test -f $file ; $echo \$?";
+    my $result = $self->run($cmd);
+    $result == 0 and return 1;
+
+    return 0;
 }
 
 __PACKAGE__->meta->make_immutable;
