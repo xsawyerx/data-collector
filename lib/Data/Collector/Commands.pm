@@ -13,6 +13,7 @@ has 'commands' => (
         echo     => '/bin/echo',
         curl     => '/usr/bin/curl',
         ifconfig => '/sbin/ifconfig',
+        netstat  => '/bin/netstat',
     } },
     handles => {
         set_command => 'set',
