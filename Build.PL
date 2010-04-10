@@ -18,6 +18,7 @@ my $builder = Module::Build->new(
         'Set::Object'               => 0,
         'Data::Dumper'              => 0,
         'Net::OpenSSH'              => 0,
+        'LWP::UserAgent'            => 0,
         'Module::Pluggable'         => 0,
         'namespace::autoclean'      => 0,
         'MooseX::StrictConstructor' => 0,
