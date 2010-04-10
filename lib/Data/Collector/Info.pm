@@ -11,30 +11,29 @@ use List::Util 'first';
 has 'raw_data' => ( is => 'rw', isa => 'Str', lazy_build => 1 );
 has 'engine'   => ( is => 'ro', isa => 'Object'  );
 
-my $KEY_REGISTRY    = Set::Object->new();
-my $MODULE_REGISTRY = Set::Object->new();
+my $REGISTRY     = Set::Object->new();
+my $INFO_MODULES = Set::Object->new();
 
-sub register_keys {
+sub register {
     my $class = shift;
     my @keys  = @_;
 
     foreach my $key (@keys) {
-        if ( first { $key eq $_ } $KEY_REGISTRY->members ) {
+        if ( first { $key eq $_ } $REGISTRY->members ) {
             croak "Sorry, key already reserved\n" .
                   'Is it possible you\'re collecting twice?';
         }
 
-        $KEY_REGISTRY->insert($key);
+        $REGISTRY->insert($key);
     }
 }
 
-sub unregister_keys {
+sub unregister {
     my @keys = @_;
-
-    $KEY_REGISTRY->remove($_) for @keys;
+    $REGISTRY->remove($_) for @keys;
 }
 
-sub clear_key_registry { $KEY_REGISTRY = Set::Object->new }
+sub clear_registry { $REGISTRY = Set::Object->new }
 
 # overridable method
 sub all  { die 'No default all method' }
@@ -44,8 +43,8 @@ sub BUILD {
     my $self  = shift;
     my $class = ref $self;
 
-    if ( ! $MODULE_REGISTRY->contains($class) ) {
-        $MODULE_REGISTRY->insert($class);
+    if ( ! $INFO_MODULES->contains($class) ) {
+        $INFO_MODULES->insert($class);
         $self->load();
     }
 }
@@ -121,7 +120,7 @@ from using this method in order to provide two collections. The reason is that
 there is still a boolean in L<Data::Collector> that will stll prevent you from
 running another collection.
 
-=head2 clear_key_registry
+=head2 clear_registry
 
 This method ostensibly clears all keys from the registry. In actuality, it
 simply replaces the existing registry with a new one.

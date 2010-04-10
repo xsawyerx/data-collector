@@ -74,9 +74,7 @@ sub serialize {
     return $serializer->serialize( $self->data );
 }
 
-sub clear_info_registry {
-    Data::Collector::Info->clear_key_registry;
-}
+sub clear_registry { Data::Collector::Info->clear_registry }
 
 __PACKAGE__->meta->make_immutable;
 1;
@@ -185,15 +183,15 @@ serialize the data it collected.
 This method can be run manually as well, but it is automatically run when
 you run I<collect>.
 
-=head2 clear_info_registry
+=head2 clear_registry
 
 Clears the information registry. The registry keeps all the keys of different
 information modules. The registry makes sure information modules don't step on
 each other.
 
-While it is called C<clear_info_registry> here, it is actually running:
+This is merely a helper method. It simply runs:
 
-    Data::Collector::Info->clear_key_registry;
+    Data::Collector::Info->clear_registry;
 
 This is actually only a mere helper method.
 
