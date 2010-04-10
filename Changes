@@ -1,5 +1,8 @@
 Revision history for Data-Collector
 
+0.05
+        * Updating prereqs (adding LWP::UserAgent)
+
 0.04    08.04.10
         * Fixed file_exists() in Engine.pm
         * Adding Data::Collector::IFaces
