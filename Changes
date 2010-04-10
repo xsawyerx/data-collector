@@ -1,6 +1,11 @@
 Revision history for Data-Collector
 
-0.05
+0.05    11.04.10
+        * -- API Change: --
+          register_keys   -> register,
+          unregister_keys -> unregister,
+        * Resolving GH #2, double collection now possible!
+        * Renamed "script" folder to "bin", to have the app installed.
         * Updating prereqs (adding LWP::UserAgent)
 
 0.04    08.04.10

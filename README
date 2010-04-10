@@ -3,7 +3,7 @@ NAME
     Puppet's Facter
 
 VERSION
-    Version 0.04
+    Version 0.05
 
 SYNOPSIS
     This module collects various information from multiple sources and makes
@@ -75,18 +75,6 @@ ATTRIBUTES
     for either testing or advanced usage. Please refrain from playing with
     it if you're unsure how it works.
 
-  collected(Bool)
-    This is boolean attribute to indicate whether or not a collection has
-    taken place.
-
-    When running a collection twice, you will without a doubt trigger the
-    registry safe mechanism by trying to register every Info module again.
-    In order to provide a proper error msg indicting this, the "collected"
-    attribute is marked after a collection.
-
-    If you clean the registry properly (using Data::Collector::Info's
-    "clear_registry"), it will also clean up this boolean.
-
 SUBROUTINES/METHODS
   collect
     The main function of Data::Collector. It runs all the information
@@ -105,11 +93,11 @@ SUBROUTINES/METHODS
     different information modules. The registry makes sure information
     modules don't step on each other.
 
-    However, this can prevent you from running collect more than once since
-    it will try to reregister all the information modules.
+    This is merely a helper method. It simply runs:
 
-    This method clears the registry and clears out the "collected" boolean,
-    allowing you to run *collect* again.
+        Data::Collector::Info->clear_registry;
+
+    This is actually only a mere helper method.
 
 AUTHOR
     Sawyer X, "<xsawyerx at cpan.org>"
