@@ -11,29 +11,30 @@ use List::Util 'first';
 has 'raw_data' => ( is => 'rw', isa => 'Str', lazy_build => 1 );
 has 'engine'   => ( is => 'ro', isa => 'Object'  );
 
-my $REGISTRY = Set::Object->new();
+my $KEY_REGISTRY    = Set::Object->new();
+my $MODULE_REGISTRY = Set::Object->new();
 
 sub register_keys {
     my $class = shift;
     my @keys  = @_;
 
     foreach my $key (@keys) {
-        if ( first { $key eq $_ } $REGISTRY->members ) {
+        if ( first { $key eq $_ } $KEY_REGISTRY->members ) {
             croak "Sorry, key already reserved\n" .
                   'Is it possible you\'re collecting twice?';
         }
 
-        $REGISTRY->insert($key);
+        $KEY_REGISTRY->insert($key);
     }
 }
 
 sub unregister_keys {
     my @keys = @_;
 
-    $REGISTRY->remove($_) for @keys;
+    $KEY_REGISTRY->remove($_) for @keys;
 }
 
-sub clear_registry { $REGISTRY = Set::Object->new }
+sub clear_registry { $KEY_REGISTRY = Set::Object->new }
 
 # overridable method
 sub all  { die 'No default all method' }
