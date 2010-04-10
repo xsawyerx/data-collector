@@ -34,15 +34,20 @@ sub unregister_keys {
     $KEY_REGISTRY->remove($_) for @keys;
 }
 
-sub clear_registry { $KEY_REGISTRY = Set::Object->new }
+sub clear_key_registry { $KEY_REGISTRY = Set::Object->new }
 
 # overridable method
 sub all  { die 'No default all method' }
 sub load {1}
 
 sub BUILD {
-    my $self = shift;
-    $self->load();
+    my $self  = shift;
+    my $class = ref $self;
+
+    if ( ! $MODULE_REGISTRY->contains($class) ) {
+        $MODULE_REGISTRY->insert($class);
+        $self->load();
+    }
 }
 
 __PACKAGE__->meta->make_immutable;
@@ -116,7 +121,7 @@ from using this method in order to provide two collections. The reason is that
 there is still a boolean in L<Data::Collector> that will stll prevent you from
 running another collection.
 
-=head2 clear_registry
+=head2 clear_key_registry
 
 This method ostensibly clears all keys from the registry. In actuality, it
 simply replaces the existing registry with a new one.

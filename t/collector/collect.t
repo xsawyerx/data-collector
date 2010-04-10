@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 7;
+use Test::More tests => 6;
 use Test::Exception;
 
 use Sub::Override;
@@ -35,10 +35,6 @@ lives_ok { $collector->collect } 'Collecting once';
 
 $engine->connected(1);
 
-# double collecting not allowed
-throws_ok { $collector->collect } qr/^Can't collect twice, buddy/;
-
-$collector->clear_registry;
 lives_ok { $collector->collect } 'Collecting again';
 
 # fake some engine to allow testing of loading
