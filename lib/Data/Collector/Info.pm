@@ -63,7 +63,7 @@ Data::Collector::Info - A base class for information classes
     package Data::Collector::Info::Bamba;
     use Moose;
     extends 'Data::Collector::Info';
-    sub load { Data::Collector::Info->register_keys('bamba') }
+    sub load { Data::Collector::Info->register('bamba') }
 
     sub _build_raw_data {
         my $self   = shift;
@@ -102,18 +102,18 @@ information. This is set by L<Data::Collector> on initialize.
 
 =head1 SUBROUTINES/METHODS
 
-=head2 register_keys
+=head2 register
 
 This method registers keys in the registry. You can provide as many as you want.
 
 It should be called using the class, not any object, as such:
 
-    Data::Collector::Info->register_keys('bamba_count');
+    Data::Collector::Info->register('bamba_count');
 
 Now if anyone else will try to register another key (such as another bamba
 module), L<Data::Collector::Info> will prevent it from happening.
 
-=head2 unregister_keys
+=head2 unregister
 
 This method can be used to remove keys from the registry. However, B<refrain>
 from using this method in order to provide two collections. The reason is that

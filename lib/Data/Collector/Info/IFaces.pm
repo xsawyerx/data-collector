@@ -10,7 +10,7 @@ with    'Data::Collector::Commands';
 has 'ignore_ip'    => ( is => 'ro', isa => 'ArrayRef', default => sub { [] } );
 has 'ignore_iface' => ( is => 'ro', isa => 'ArrayRef', default => sub { [] } );
 
-sub load { Data::Collector::Info->register_keys('ifaces') }
+sub load { Data::Collector::Info->register('ifaces') }
 
 sub _build_raw_data {
     my $self = shift;

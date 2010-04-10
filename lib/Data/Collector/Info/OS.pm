@@ -36,7 +36,7 @@ has 'types' => (
 );
 
 sub load {
-    Data::Collector::Info->register_keys( qw/ os_name os_distro os_version / );
+    Data::Collector::Info->register( qw/ os_name os_distro os_version / );
 }
 
 sub all {

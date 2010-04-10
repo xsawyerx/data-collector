@@ -18,7 +18,7 @@ use Data::Collector::Info::Memory;
     ok( ! $data->{'free_memory'},  'No free_memory'  );
 }
 
-Data::Collector::Info->unregister_keys(qw/ total_memory free_memory/);
+Data::Collector::Info->unregister(qw/ total_memory free_memory/);
 
 {
     my $mem  = "MemTotal:        1014512 kB\nMemFree:           39948 kB\n";

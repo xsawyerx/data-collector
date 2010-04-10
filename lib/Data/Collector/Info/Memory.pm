@@ -8,7 +8,7 @@ extends 'Data::Collector::Info';
 with    'Data::Collector::Commands';
 
 sub load {
-    Data::Collector::Info->register_keys( qw/ total_memory free_memory / );
+    Data::Collector::Info->register( qw/ total_memory free_memory / );
 }
 
 sub _build_raw_data {

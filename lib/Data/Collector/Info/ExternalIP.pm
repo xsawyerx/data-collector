@@ -15,7 +15,7 @@ has 'url' => (
     default => 'http://checkip.dyndns.org',
 );
 
-sub load { Data::Collector::Info->register_keys('external_ip') }
+sub load { Data::Collector::Info->register('external_ip') }
 
 sub _build_raw_data {
     my $self = shift;

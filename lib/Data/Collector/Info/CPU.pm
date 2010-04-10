@@ -8,7 +8,7 @@ extends 'Data::Collector::Info';
 with    'Data::Collector::Commands';
 
 sub load {
-    Data::Collector::Info->register_keys( qw/
+    Data::Collector::Info->register( qw/
         number_of_cpus cpu_mhz cpu_model cpu_flags
     / );
 }
