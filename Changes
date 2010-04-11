@@ -1,5 +1,10 @@
 Revision history for Data-Collector
 
+0.06
+        * Resolved GH #8.
+        * Refactored Info::IFaces using List::Util::first.
+        * Adding List::Util to prereqs.
+
 0.05    11.04.10
         * -- API Change: --
           register_keys   -> register,
