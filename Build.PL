@@ -15,6 +15,7 @@ my $builder = Module::Build->new(
     requires            => {
         'JSON'                      => 0,
         'Moose'                     => 0,
+        'List::Util'                => 0,
         'Set::Object'               => 0,
         'Data::Dumper'              => 0,
         'Net::OpenSSH'              => 0,
