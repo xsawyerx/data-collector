@@ -12,6 +12,7 @@ has 'format'        => ( is => 'ro', isa => 'Str',     default => 'JSON'     );
 has 'format_args'   => ( is => 'ro', isa => 'HashRef', default => sub { {} } );
 has 'engine'        => ( is => 'ro', isa => 'Str',     default => 'OpenSSH'  );
 has 'engine_args'   => ( is => 'ro', isa => 'HashRef', default => sub { {} } );
+has 'info_args'     => ( is => 'ro', isa => 'HashRef', default => sub { {} } );
 has 'engine_object' => (
     is         => 'ro',
     isa        => 'Object',
@@ -154,6 +155,18 @@ The default is JSON.
 
 Much like I<engine_args>, you can supply any additional arguments that will
 reach the serializer's I<new> method.
+
+=head2 info_args(HashRef)
+
+Much like I<engine_args> and I<info_args>, you can supply any additional
+arguments that should go to specific Info module's I<new> method.
+
+    info_args => {
+        IFaces => {
+            ignore_ip    => ['127.0.0.1'],
+            ignore_iface => ['lo'],
+        },
+    },
 
 =head2 data(HashRef)
 
