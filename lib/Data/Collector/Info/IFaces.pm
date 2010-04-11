@@ -3,6 +3,7 @@ package Data::Collector::Info::IFaces;
 use Moose;
 use MooseX::StrictConstructor;
 use namespace::autoclean;
+use List::Utils 'first';
 
 extends 'Data::Collector::Info';
 with    'Data::Collector::Commands';
@@ -25,14 +26,14 @@ sub all {
 sub ifaces {
     my $self          = shift;
     my @data          = split /\n/, $self->raw_data;
-    my $ignores       = $self->ignore_ip;
+    my $ip_ignores    = $self->ignore_ip;
+    my $iface_ignores = $self->ignore_iface;
     my %ifaces        = ();
     my $current_iface = q{};
     my $iface_regex   = qr/^ (.+) \s+ Link /x;
     my $ip_regex      = qr/ addr \: (\d+\.\d+\.\d+\.\d+) /x;
     chomp @data;
 
-IFACE:
     foreach my $line (@data) {
         if ( $line =~ $iface_regex ) {
             $current_iface = $1;
@@ -40,13 +41,15 @@ IFACE:
 
         $current_iface =~ s/\s+$//;
 
+        if ( first { $current_iface eq $_ } @{$iface_ignores} ) {
+            next;
+        }
+
         if ( $line =~ $ip_regex ) {
             my $ip = $1;
 
-            foreach my $ignore_ip ( @{$ignores} ) {
-                if ( $ip eq $ignore_ip ) {
-                    next IFACE;
-                }
+            if ( first { $ip eq $ignore_ip } @{$ip_ignores} ) {
+                next;
             }
 
             $ifaces{$current_iface} = $ip;
