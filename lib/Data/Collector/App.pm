@@ -46,6 +46,17 @@ foreach my $class (@classes) {
     );
 }
 
+sub BUILD {
+    my $self  = shift;
+    my $regex = qr/^info_(.+)_args$/;
+
+    foreach my $attr ( $self->meta->get_attribute_list ) {
+        if ( $attr =~ $regex ) {
+            $self->info_args->{$1} = $self->$attr;
+        }
+    }
+}
+
 sub run {
     my $self      = shift;
     my $collector = Data::Collector->new(
@@ -53,6 +64,7 @@ sub run {
         engine_args => $self->engine_args,
         format      => $self->format,
         format_args => $self->format_args,
+        info_args   => $self->info_args,
     );
 
     my $data = $collector->collect;
