@@ -7,11 +7,7 @@ use namespace::autoclean;
 extends 'Data::Collector::Info';
 with    'Data::Collector::Commands';
 
-sub load {
-    Data::Collector::Info->register( qw/
-        number_of_cpus cpu_mhz cpu_model cpu_flags
-    / );
-}
+sub info_keys { [qw/number_of_cpus cpu_mhz cpu_model cpu_flags/] }
 
 sub _build_raw_data {
     my $self = shift;
@@ -69,10 +65,10 @@ I<cpu_model> and I<cpu_flags>.
 
 =head1 SUBROUTINES/METHODS
 
-=head2 load
+=head2 info_keys
 
-Subclassing C<load> from L<Data::Collector::Info> to register keys in the
-registry.
+Subclassing C<info_keys> from L<Data::Collector::Info> to indicate which keys
+to register.
 
 =head2 count
 

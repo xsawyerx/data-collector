@@ -35,9 +35,7 @@ has 'types' => (
     } },
 );
 
-sub load {
-    Data::Collector::Info->register( qw/ os_name os_distro os_version / );
-}
+sub info_keys { [qw/ os_name os_distro os_version /] }
 
 sub all {
     my $self   = shift;
@@ -86,10 +84,10 @@ I<os_version>.
 
 =head1 SUBROUTINES/METHODS
 
-=head2 load
+=head2 info_keys
 
-Subclassing C<load> from L<Data::Collector::Info> to register keys in the
-registry.
+Subclassing C<info_keys> from L<Data::Collector::Info> to indicate which keys
+to register.
 
 =head2 all
 

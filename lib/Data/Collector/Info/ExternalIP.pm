@@ -15,7 +15,7 @@ has 'url' => (
     default => 'http://checkip.dyndns.org',
 );
 
-sub load { Data::Collector::Info->register('external_ip') }
+sub info_keys { ['external_ip'] }
 
 sub _build_raw_data {
     my $self = shift;
@@ -72,10 +72,10 @@ I<http://checkip.dyndns.org>.
 
 =head1 SUBROUTINES/METHODS
 
-=head2 load
+=head2 info_keys
 
-Subclassing C<load> from L<Data::Collector::Info> to register keys in the
-registry.
+Subclassing C<info_keys> from L<Data::Collector::Info> to indicate which keys
+to register.
 
 =head2 all
 

@@ -11,7 +11,7 @@ with    'Data::Collector::Commands';
 has 'ignore_ip'    => ( is => 'ro', isa => 'ArrayRef', default => sub { [] } );
 has 'ignore_iface' => ( is => 'ro', isa => 'ArrayRef', default => sub { [] } );
 
-sub load { Data::Collector::Info->register('ifaces') }
+sub info_keys { ['ifaces'] }
 
 sub _build_raw_data {
     my $self = shift;
@@ -81,10 +81,10 @@ A list of interfaces to ignore.
 
 =head1 SUBROUTINES/METHODS
 
-=head2 load
+=head2 info_keys
 
-Subclassing C<load> from L<Data::Collector::Info> to register keys in the
-registry.
+Subclassing C<info_keys> from L<Data::Collector::Info> to indicate which keys
+to register.
 
 =head2 ifaces
 

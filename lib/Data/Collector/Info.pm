@@ -9,7 +9,7 @@ use Set::Object;
 use List::Util 'first';
 
 has 'raw_data' => ( is => 'rw', isa => 'Str', lazy_build => 1 );
-has 'engine'   => ( is => 'ro', isa => 'Object'  );
+has 'engine'   => ( is => 'ro', isa => 'Object' );
 
 my $REGISTRY     = Set::Object->new();
 my $INFO_MODULES = Set::Object->new();
@@ -36,8 +36,9 @@ sub unregister {
 sub clear_registry { $REGISTRY = Set::Object->new }
 
 # overridable method
-sub all  { die 'No default all method' }
-sub load {1}
+sub load      {1}
+sub info_keys { die 'No default info_keys method' }
+sub all       { die 'No default all method'       }
 
 sub BUILD {
     my $self  = shift;
@@ -45,6 +46,10 @@ sub BUILD {
 
     if ( ! $INFO_MODULES->contains($class) ) {
         $INFO_MODULES->insert($class);
+
+        my $keys = $self->info_keys;
+        ref $keys eq 'ARRAY' and Data::Collector::Info->register( @{$keys} );
+
         $self->load();
     }
 }
@@ -63,7 +68,8 @@ Data::Collector::Info - A base class for information classes
     package Data::Collector::Info::Bamba;
     use Moose;
     extends 'Data::Collector::Info';
-    sub load { Data::Collector::Info->register('bamba') }
+
+    sub info_keys { ['bamba'] }
 
     sub _build_raw_data {
         my $self   = shift;
@@ -125,6 +131,15 @@ running another collection.
 This method ostensibly clears all keys from the registry. In actuality, it
 simply replaces the existing registry with a new one.
 
+=head2 info_keys
+
+This method will run before an information module is loaded. You should subclass
+this method to indicate what keys you're going to acquire.
+
+Any type of data other than an arrayref will be ignored.
+
+You B<must> subclass this method or your code will C<die>.
+
 =head2 load
 
 This method will run when an information module is loaded. You should subclass
@@ -140,7 +155,7 @@ This method is run to get all the information attainable by the info module.
 If you have several bits of information in your module, you can have methods
 for each, but they should all be attainable using the C<all> method.
 
-You B<must> subclass this mehtod or your code will C<die>.
+You B<must> subclass this method or your code will C<die>.
 
 =head2 BUILD
 

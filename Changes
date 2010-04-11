@@ -2,6 +2,7 @@ Revision history for Data-Collector
 
 0.06
         * Resolved GH #8.
+        * Resolved GH #6 - Adding info_keys method to Info.pm.
         * Refactored Info::IFaces using List::Util::first.
         * Adding List::Util to prereqs.
 

@@ -12,12 +12,12 @@ use Data::Collector::Info::Memory;
     package Data::Collector::Info::One;
     use Moose;
     extends 'Data::Collector::Info';
-    sub load { Data::Collector::Info->register('this') }
+    sub info_keys { ['this'] }
 
     package Data::Collector::Info::Two;
     use Moose;
     extends 'Data::Collector::Info';
-    sub load { Data::Collector::Info->register('this') }
+    sub info_keys { ['this'] }
 }
 
 my $info;
