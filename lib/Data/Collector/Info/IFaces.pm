@@ -3,7 +3,7 @@ package Data::Collector::Info::IFaces;
 use Moose;
 use MooseX::StrictConstructor;
 use namespace::autoclean;
-use List::Utils 'first';
+use List::Util 'first';
 
 extends 'Data::Collector::Info';
 with    'Data::Collector::Commands';
@@ -48,7 +48,7 @@ sub ifaces {
         if ( $line =~ $ip_regex ) {
             my $ip = $1;
 
-            if ( first { $ip eq $ignore_ip } @{$ip_ignores} ) {
+            if ( first { $ip eq $_ } @{$ip_ignores} ) {
                 next;
             }
 
