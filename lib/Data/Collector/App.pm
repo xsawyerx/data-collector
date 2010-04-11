@@ -1,6 +1,7 @@
 package Data::Collector::App;
 
 use Moose;
+use Module::Pluggable::Object;
 use MooseX::Types::Path::Class 'File';
 use namespace::autoclean;
 
@@ -19,11 +20,31 @@ has 'output' => (
     predicate => 'has_output',
 );
 
-has [ qw/ engine_args format_args / ] => (
+has [ qw/ engine_args format_args info_args / ] => (
     is      => 'ro',
     isa     => 'HashRef',
     default => sub { {} },
 );
+
+my @classes = Module::Pluggable::Object->new(
+    search_path => 'Data::Collector::Info'
+)->plugins;
+
+foreach my $class (@classes) {
+    my @classes = split /\:\:/, $class;
+    my $info    = lc $classes[-1];
+    my $attr    = "info_${info}_args";
+
+    if ( __PACKAGE__->meta->get_attribute($attr) ) {
+        die "Already have attribute by the name of $attr\n";
+    }
+
+    has $attr => (
+        is      => 'ro',
+        isa     => 'HashRef',
+        default => sub { {} },
+    );
+}
 
 sub run {
     my $self      = shift;
