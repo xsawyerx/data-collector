@@ -114,6 +114,10 @@ Type of serialization (C<JSON> or C<YAML>, for example).
 
 Any additional arguments the serializer might want.
 
+=head2 info_args
+
+Any additional arguments the Info module might want.
+
 =head2 output
 
 A file to output to. If one is not provided, it will output the serialized
