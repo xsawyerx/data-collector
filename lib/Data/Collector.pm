@@ -51,7 +51,14 @@ sub collect {
     );
 
     foreach my $class ( $object->plugins ) {
-        my $info = $class->new( engine => $self->engine_object );
+        my @levels = split /\:\:/, $class;
+        my $level  = lc $levels[-1];
+
+        my $info = $class->new(
+            engine => $self->engine_object,
+            %{ $self->info_args->{ lc $level } },
+        );
+
         my %data = %{ $info->all() };
 
         $self->add_data(%data);

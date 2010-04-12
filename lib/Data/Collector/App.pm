@@ -31,9 +31,9 @@ my @classes = Module::Pluggable::Object->new(
 )->plugins;
 
 foreach my $class (@classes) {
-    my @classes = split /\:\:/, $class;
-    my $info    = lc $classes[-1];
-    my $attr    = "info_${info}_args";
+    my @levels = split /\:\:/, $class;
+    my $level  = lc $levels[-1];
+    my $attr   = "info_${level}_args";
 
     if ( __PACKAGE__->meta->get_attribute($attr) ) {
         die "Already have attribute by the name of $attr\n";
@@ -129,6 +129,8 @@ Any additional arguments the serializer might want.
 =head2 info_args
 
 Any additional arguments the Info module might want.
+
+You generally don't want to play with it, trust me.
 
 =head2 output
 
