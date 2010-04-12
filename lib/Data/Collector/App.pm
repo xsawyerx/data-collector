@@ -1,6 +1,7 @@
 package Data::Collector::App;
 
 use Moose;
+use List::MoreUtils 'none';
 use Module::Pluggable::Object;
 use MooseX::Types::Path::Class 'File';
 use namespace::autoclean;
@@ -27,32 +28,48 @@ has [ qw/ engine_args format_args info_args / ] => (
 );
 
 my @classes = Module::Pluggable::Object->new(
-    search_path => 'Data::Collector::Info'
+    search_path => 'Data::Collector::Info',
+    require     => 1, # can use Class::MOP::load_class instead
 )->plugins;
 
+my @ignore_classes = qw/
+    Data::Collector::Commands
+    Data::Collector::Info
+/;
+
 foreach my $class (@classes) {
-    my @levels = split /\:\:/, $class;
-    my $level  = lc $levels[-1];
-    my $attr   = "info_${level}_args";
+    foreach my $attribute ( $class->meta->get_all_attributes ) {
+        my $name    = $attribute->name;
+        my $assoc   = $attribute->associated_class->name;
+        my $package = $attribute->definition_context->{'package'};
 
-    if ( __PACKAGE__->meta->get_attribute($attr) ) {
-        die "Already have attribute by the name of $attr\n";
+        if ( none { $package eq $_ } @ignore_classes ) {
+            my @levels = split /\:\:/, $class;
+            my $level  = lc $levels[-1];
+            my $attr   = "info_${level}_${name}";
+
+            if ( __PACKAGE__->meta->get_attribute($attr) ) {
+                die "Already have attribute by the name of $attr\n";
+            }
+
+            __PACKAGE__->meta->add_attribute(
+                $attribute->clone( name => $attr )
+            );
+        }
     }
-
-    has $attr => (
-        is      => 'ro',
-        isa     => 'HashRef',
-        default => sub { {} },
-    );
 }
 
 sub BUILD {
     my $self  = shift;
-    my $regex = qr/^info_(.+)_args$/;
+    my $regex = qr/^info_(.+?)_(.+)$/;
 
     foreach my $attr ( $self->meta->get_attribute_list ) {
+        print "found attr: $attr\n";
         if ( $attr =~ $regex ) {
-            $self->info_args->{$1} = $self->$attr;
+            # bad jojo magambo
+            if ( exists $self->{$attr} ) {
+                $self->info_args->{$1}{$2} = $self->{$attr};
+            }
         }
     }
 }
