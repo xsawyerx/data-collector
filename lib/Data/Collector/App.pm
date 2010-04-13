@@ -64,7 +64,6 @@ sub BUILD {
     my $regex = qr/^info_(.+?)_(.+)$/;
 
     foreach my $attr ( $self->meta->get_attribute_list ) {
-        print "found attr: $attr\n";
         if ( $attr =~ $regex ) {
             # bad jojo magambo
             if ( exists $self->{$attr} ) {
