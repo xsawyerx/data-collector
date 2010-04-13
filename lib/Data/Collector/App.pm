@@ -171,6 +171,11 @@ Runs the application: starts a new collector, collects the informtion and -
 depending on the options - either outputs the result to the screen or to a
 file.
 
+=head2 BUILD
+
+Subroutine run after initialization. Used to create the C<info_args> attribute
+for the main C<Data::Collector>.
+
 =head1 AUTHOR
 
 Sawyer X, C<< <xsawyerx at cpan.org> >>
