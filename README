@@ -3,7 +3,7 @@ NAME
     Puppet's Facter
 
 VERSION
-    Version 0.05
+    Version 0.06
 
 SYNOPSIS
     This module collects various information from multiple sources and makes
@@ -64,6 +64,17 @@ ATTRIBUTES
   format_args(HashRef)
     Much like *engine_args*, you can supply any additional arguments that
     will reach the serializer's *new* method.
+
+  info_args(HashRef)
+    Much like *engine_args* and *info_args*, you can supply any additional
+    arguments that should go to specific Info module's *new* method.
+
+        info_args => {
+            IFaces => {
+                ignore_ip    => ['127.0.0.1'],
+                ignore_iface => ['lo'],
+            },
+        },
 
   data(HashRef)
     While (and post) collecting, this attribute contains all the information

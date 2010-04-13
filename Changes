@@ -1,6 +1,6 @@
 Revision history for Data-Collector
 
-0.06
+0.06    13.04.10
         * Resolved GH #8.
         * Resolved GH #7.
         * Resolved GH #4 - Adding info_keys method to Info.pm.

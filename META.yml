@@ -8,7 +8,7 @@ build_requires:
   Test::More: 0
 configure_requires:
   Module::Build: 0.36
-generated_by: 'Module::Build version 0.3601'
+generated_by: 'Module::Build version 0.3603'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -17,7 +17,7 @@ name: Data-Collector
 provides:
   Data::Collector:
     file: lib/Data/Collector.pm
-    version: 0.05
+    version: 0.06
   Data::Collector::App:
     file: lib/Data/Collector/App.pm
   Data::Collector::Commands:
@@ -54,6 +54,8 @@ requires:
   Data::Dumper: 0
   JSON: 0
   LWP::UserAgent: 0
+  List::MoreUtils: 0
+  List::Util: 0
   Module::Pluggable: 0
   Moose: 0
   MooseX::StrictConstructor: 0
@@ -62,4 +64,4 @@ requires:
   namespace::autoclean: 0
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.05
+version: 0.06
