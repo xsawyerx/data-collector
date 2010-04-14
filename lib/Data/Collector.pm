@@ -27,6 +27,10 @@ has 'data' => (
     handles => { add_data => 'set' },
 );
 
+has [ qw/ infos exclude_infos / ] => (
+    is => 'ro', isa => 'ArrayRef',
+);
+
 sub _build_engine_object {
     my $self  = shift;
     my $type  = $self->engine;
