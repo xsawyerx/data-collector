@@ -47,7 +47,10 @@ sub collect {
     my $engine = $self->engine_object;
 
     # lazy calling the connect
-    $engine->connected or $engine->connect;
+    if ( ! $engine->connected ) {
+        $engine->connect;
+        $engine->connected(1);
+    }
 
     my $object = Module::Pluggable::Object->new(
         search_path => 'Data::Collector::Info',
@@ -68,7 +71,10 @@ sub collect {
         $self->add_data(%data);
     }
 
-    $engine->connected and $engine->disconnect;
+    if ( $engine->connected ) {
+        $engine->disconnect;
+        $engine->connected(0);
+    }
 
     return $self->serialize;
 }
