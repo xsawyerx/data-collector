@@ -1,5 +1,9 @@
 Revision history for Data-Collector
 
+0.07
+        * Engine doesn't have to set connected() anymore.
+        * Resolved GH #1.
+
 0.06    13.04.10
         * Resolved GH #8.
         * Resolved GH #7.

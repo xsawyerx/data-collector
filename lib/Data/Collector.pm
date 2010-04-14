@@ -3,6 +3,7 @@ package Data::Collector;
 use Carp;
 use Moose;
 use MooseX::StrictConstructor;
+use MooseX::Types::Set::Object;
 use Module::Pluggable::Object;
 use namespace::autoclean;
 
@@ -27,8 +28,18 @@ has 'data' => (
     handles => { add_data => 'set' },
 );
 
-has [ qw/ infos exclude_infos / ] => (
-    is => 'ro', isa => 'ArrayRef',
+has 'infos' => (
+    is       => 'ro',
+    isa      => 'Set::Object',
+    coerce   => 1,
+    default  => sub { Set::Object->new },
+);
+
+has 'exclude_infos' => (
+    is       => 'ro',
+    isa      => 'Set::Object',
+    coerce   => 1,
+    default  => sub { Set::Object->new },
 );
 
 sub _build_engine_object {
@@ -58,17 +69,7 @@ sub collect {
     );
 
     foreach my $class ( $object->plugins ) {
-        my @levels = split /\:\:/, $class;
-        my $level  = lc $levels[-1];
-
-        my $info = $class->new(
-            engine => $self->engine_object,
-            %{ $self->info_args->{ lc $level } },
-        );
-
-        my %data = %{ $info->all() };
-
-        $self->add_data(%data);
+        $self->load_info($class);
     }
 
     if ( $engine->connected ) {
@@ -77,6 +78,35 @@ sub collect {
     }
 
     return $self->serialize;
+}
+
+sub load_info {
+    my ( $self, $class ) = @_;
+
+    my @levels = split /\:\:/, $class;
+    my $level  = $levels[-1];
+
+    if ( $self->infos->members ) {
+        # we got specific infos requested
+        if ( ! $self->infos->has($level) ) {
+            # this info is not on the infos list
+            return;
+        }
+    }
+
+    if ( $self->exclude_infos->has($level) ) {
+        # this info is on the exclusion list
+        return;
+    }
+
+    my $info = $class->new(
+        engine => $self->engine_object,
+        %{ $self->info_args->{ lc $level } },
+    );
+
+    my %data = %{ $info->all() };
+
+    $self->add_data(%data);
 }
 
 sub serialize {
