@@ -42,6 +42,13 @@ has 'exclude_infos' => (
     default  => sub { Set::Object->new },
 );
 
+has 'os' => (
+    is        => 'rw',
+    isa       => 'Str',
+    trigger   => sub { shift->load_os(@_) },
+    predicate => 'has_os',
+);
+
 sub _build_engine_object {
     my $self  = shift;
     my $type  = $self->engine;
@@ -51,6 +58,19 @@ sub _build_engine_object {
     $@ && die "Can't load engine '$class': $@";
 
     return "Data::Collector::Engine::$type"->new( %{ $self->engine_args } );
+}
+
+sub BUILD {
+    my $self = shift;
+
+    if ( ! $self->has_os ) {
+        # default if not run by App.pm
+        $self->os('CentOS');
+    }
+}
+
+sub load_os {
+    my ( $self, $new_os, $old_os ) = @_;
 }
 
 sub collect {
