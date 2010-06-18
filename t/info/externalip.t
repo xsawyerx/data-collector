@@ -2,7 +2,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 16;
+use Test::More tests => 21;
 use Test::Exception;
 
 use Data::Collector::Info::ExternalIP;
@@ -41,6 +41,7 @@ Data::Collector::Info->unregister(qw/ total_memory free_memory/);
             isa_ok( $_[0], 'Data::Collector::Engine::Fake' );
             is( $_[1], 'mycurl myurl.com 2>/dev/null', 'correct engine cmd' );
             $found or return '10.0.0.1';
+            $found == 1 and return 1;
             return;
         }
     }
@@ -61,6 +62,11 @@ Data::Collector::Info->unregister(qw/ total_memory free_memory/);
     );
 
     is( $info->all->{'external_ip'}, '10.0.0.1', '_build_raw_data working' );
+
+    $found++;
+    throws_ok {
+        $info->_build_raw_data;
+    } qr/^Couldn't find IP in output/, 'parsing warning';
 
     $found++;
     throws_ok {
