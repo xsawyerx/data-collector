@@ -33,17 +33,20 @@ sub count {
 
 sub mhz {
     my $self = shift;
-    return $1 if $self->raw_data =~ /^cpu MHz\s+\:\s+(.+)\n/m;
+    my $raw  = $self->raw_data || q{};
+    return $1 if $raw =~ /^cpu MHz\s+\:\s+(.+)\n/m;
 }
 
 sub model {
     my $self = shift;
-    return $1 if $self->raw_data =~ /^model name\s+\:\s+(.+)\n/m;
+    my $raw  = $self->raw_data || q{};
+    return $1 if $raw =~ /^model name\s+\:\s+(.+)\n/m;
 }
 
 sub flags {
     my $self = shift;
-    return $1 if $self->raw_data =~ /^flags\s+:\s+(.+)\n/m;
+    my $raw  = $self->raw_data || q{};
+    return $1 if $raw =~ /^flags\s+:\s+(.+)\n/m;
 }
 
 __PACKAGE__->meta->make_immutable;
