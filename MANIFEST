@@ -31,6 +31,7 @@ t/engine/openssh.t
 t/engine/subclassing.t
 t/info/base.t
 t/info/memory.t
+t/info/externalip.t
 t/info/reserved_keys.t
 t/manifest.t
 t/pod-coverage.t
