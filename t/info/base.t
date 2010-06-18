@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 4;
+use Test::More tests => 6;
 use Test::Exception;
 
 use Sub::Override;
@@ -19,3 +19,8 @@ $sub->restore;
 
 throws_ok { $info->info_keys } qr/^No default info_keys method/;
 throws_ok { $info->all       } qr/^No default all method/;
+
+$info->register('key');
+throws_ok { $info->register('key') } qr/^Sorry, key already reserved/;
+$info->clear_registry();
+lives_ok { $info->register('key') } 'Registry cleared';
