@@ -2,7 +2,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 12;
+use Test::More tests => 18;
 
 use Data::Collector::Info::CPU;
 
@@ -43,3 +43,15 @@ Data::Collector::Info->unregister( qw/
     is( $data->{'cpu_mhz'       }, '800.000',        'correct cpu_mhz'        );
 }
 
+{
+    my $info = Data::Collector::Info::CPU->new( raw_data => '' );
+    $info->all;
+
+    isa_ok( $info, 'Data::Collector::Info::CPU' );
+    my $data = $info->all;
+
+    cmp_ok( scalar keys ( %{$data} ), '==', 4, 'Correct number of keys' );
+    foreach my $key ( qw/number_of_cpus cpu_flags cpu_model cpu_mhz/ ) {
+        ok( ! $data->{$key}, "no $key" );
+    }
+}
