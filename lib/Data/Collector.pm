@@ -151,8 +151,7 @@ __END__
 
 =head1 NAME
 
-Data::Collector - Collect information from multiple sources - like Puppet's
-Facter
+Data::Collector - Collect information from multiple sources
 
 =head1 VERSION
 
@@ -160,8 +159,8 @@ Version 0.06
 
 =head1 SYNOPSIS
 
-This module collects various information from multiple sources and makes it
-available in different formats.
+Data::Collector collects various information from multiple sources and makes it
+available in different formats, similar to Puppet's Facter.
 
     use Data::Collector;
 
@@ -173,6 +172,9 @@ available in different formats.
 
     my %data = $collector->collect;
     ...
+
+Data::Collector uses I<Info>s to determine what information is collected. It
+then uses I<Serialize>rs to serialize that information.
 
 An important concept in Data::Collector is that it does not use any modules to
 fetch the information, only shell commands. This might seem like a pain at first
