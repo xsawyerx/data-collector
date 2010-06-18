@@ -41,10 +41,11 @@ sub info_keys { die 'No default info_keys method' }
 sub all       { die 'No default all method'       }
 
 sub BUILD {
-    my $self  = shift;
-    my $class = ref $self;
+    my $self      = shift;
+    my $class     = ref $self;
+    my $contained = $INFO_MODULES->contains($class);
 
-    if ( ! $INFO_MODULES->contains($class) ) {
+    if ( ! $contained ) {
         $INFO_MODULES->insert($class);
 
         my $keys = $self->info_keys;
