@@ -27,7 +27,7 @@ sub _build_raw_data {
         return $1;
     }
 
-    croak q{Coulnd't find IP in output};
+    croak q{Couldn't find IP in output};
 }
 
 sub all {
