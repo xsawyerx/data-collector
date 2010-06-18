@@ -44,14 +44,13 @@ sub BUILD {
     my $self  = shift;
     my $class = ref $self;
 
-    if ( ! $INFO_MODULES->contains($class) ) {
-        $INFO_MODULES->insert($class);
+    # no need to check, since $INFO_MODULES is empty on init
+    $INFO_MODULES->insert($class);
 
-        my $keys = $self->info_keys;
-        ref $keys eq 'ARRAY' and Data::Collector::Info->register( @{$keys} );
+    my $keys = $self->info_keys;
+    ref $keys eq 'ARRAY' and Data::Collector::Info->register( @{$keys} );
 
-        $self->load();
-    }
+    $self->load();
 }
 
 __PACKAGE__->meta->make_immutable;
