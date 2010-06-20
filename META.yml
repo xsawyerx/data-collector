@@ -1,5 +1,5 @@
 ---
-abstract: "Collect information from multiple sources - like Puppet's\nFacter"
+abstract: 'Collect information from multiple sources'
 author:
   - 'Sawyer X <xsawyerx@cpan.org>'
 build_requires:
@@ -59,6 +59,7 @@ requires:
   Module::Pluggable: 0
   Moose: 0
   MooseX::StrictConstructor: 0
+  MooseX::Types::Set::Object: 0
   Net::OpenSSH: 0
   Set::Object: 0
   namespace::autoclean: 0

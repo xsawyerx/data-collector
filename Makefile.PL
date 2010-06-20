@@ -13,6 +13,7 @@ WriteMakefile
                            'Module::Pluggable' => 0,
                            'Moose' => 0,
                            'MooseX::StrictConstructor' => 0,
+                           'MooseX::Types::Set::Object' => 0,
                            'Net::OpenSSH' => 0,
                            'Set::Object' => 0,
                            'Sub::Override' => 0,

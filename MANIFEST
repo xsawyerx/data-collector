@@ -34,6 +34,8 @@ t/info/memory.t
 t/info/externalip.t
 t/info/cpu.t
 t/info/reserved_keys.t
+t/info/ifaces.t
+t/info/os.t
 t/manifest.t
 t/pod-coverage.t
 t/pod.t
