@@ -18,13 +18,14 @@ has 'host'   => (
 
 has 'user'   => ( is => 'rw', isa => 'Str', predicate => 'has_user'   );
 has 'passwd' => ( is => 'rw', isa => 'Str', predicate => 'has_passwd' );
+has 'port'   => ( is => 'rw', isa => 'Int', predicate => 'has_port' );
 has 'ssh'    => ( is => 'rw', isa => 'Net::OpenSSH' );
 
 sub connect {
     my $self = shift;
     my %data = ();
 
-    foreach my $attr ( qw/ user passwd / ) {
+    foreach my $attr ( qw/ user passwd port / ) {
         my $predicate = "has_$attr";
         $self->$predicate and $data{$attr} = $self->$attr;
     }
@@ -39,6 +40,20 @@ sub run {
     my ( $self, $cmd ) = @_;
 
     return $self->ssh->capture($cmd);
+}
+
+sub pipe {
+    my ( $self, $cmd, $params ) = @_;
+    my ( $in, $out, $pid ) = $self->ssh->open2($cmd);
+
+    print {$in} $params;
+    close $in;
+
+    my $output;
+    while ( <$out> ) { $output .= $_; }
+    close $out;
+
+    return $output;
 }
 
 __PACKAGE__->meta->make_immutable;
