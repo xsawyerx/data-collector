@@ -2,7 +2,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 8;
+use Test::More tests => 12;
 
 use Data::Collector::Info::Memory;
 
@@ -31,5 +31,17 @@ Data::Collector::Info->unregister(qw/ total_memory free_memory/);
 
     is( $data->{'total_memory'}, '1014512', 'correct total_memory' );
     is( $data->{'free_memory'},  '39948',   'correct free_memory'  );
+}
+
+{
+    my $info = Data::Collector::Info::Memory->new( raw_data => '' );
+
+    isa_ok( $info, 'Data::Collector::Info::Memory' );
+    my $data = $info->all;
+
+    cmp_ok( scalar keys ( %{$data} ), '==', 2, 'Correct number of keys' );
+
+    ok( ! $data->{'total_memory'}, 'no total_memory' );
+    ok( ! $data->{'free_memory'},  'no free_memory'  );
 }
 

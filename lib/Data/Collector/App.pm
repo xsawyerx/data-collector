@@ -14,6 +14,7 @@ has '+configfile' => ( default => '/etc/data_collector.yaml' );
 
 has 'engine' => ( is => 'ro', isa => 'Str', default => 'OpenSSH' );
 has 'format' => ( is => 'ro', isa => 'Str', default => 'JSON'    );
+has 'os'     => ( is => 'ro', isa => 'Str', default => 'CentOS'  );
 
 has 'output' => (
     is        => 'ro',
@@ -76,6 +77,7 @@ sub BUILD {
 sub run {
     my $self      = shift;
     my $collector = Data::Collector->new(
+        os          => $self->os,
         engine      => $self->engine,
         engine_args => $self->engine_args,
         format      => $self->format,

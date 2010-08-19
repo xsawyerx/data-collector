@@ -25,12 +25,14 @@ sub all {
 
 sub total {
     my $self = shift;
-    return $1 if $self->raw_data =~ /MemTotal\:\s+(\d+)\skB/;
+    my $raw  = $self->raw_data || q{};
+    return $1 if $raw =~ /MemTotal\:\s+(\d+)\skB/;
 }
 
 sub free {
     my $self = shift;
-    return $1 if $self->raw_data =~ /MemFree\:\s+(\d+)\skB/;
+    my $raw  = $self->raw_data || q{};
+    return $1 if $raw =~ /MemFree\:\s+(\d+)\skB/;
 }
 
 __PACKAGE__->meta->make_immutable;

@@ -20,6 +20,7 @@ has 'types' => (
             file    => '/etc/redhat-release',
             version => sub {
                 my ( $self, $data ) = @_;
+                $data   ||= q{};
                 my $regex = qr/
                     ^CentOS \s release \s
                     (\d+) (\.\d+)? (?: \s \(Final\) )?

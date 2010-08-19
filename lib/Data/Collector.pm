@@ -42,6 +42,13 @@ has 'exclude_infos' => (
     default  => sub { Set::Object->new },
 );
 
+has 'os' => (
+    is        => 'rw',
+    isa       => 'Str',
+    trigger   => sub { shift->load_os(@_) },
+    predicate => 'has_os',
+);
+
 sub _build_engine_object {
     my $self  = shift;
     my $type  = $self->engine;
@@ -51,6 +58,19 @@ sub _build_engine_object {
     $@ && die "Can't load engine '$class': $@";
 
     return "Data::Collector::Engine::$type"->new( %{ $self->engine_args } );
+}
+
+sub BUILD {
+    my $self = shift;
+
+    if ( ! $self->has_os ) {
+        # default if not run by App.pm
+        $self->os('CentOS');
+    }
+}
+
+sub load_os {
+    my ( $self, $new_os, $old_os ) = @_;
 }
 
 sub collect {
@@ -131,8 +151,7 @@ __END__
 
 =head1 NAME
 
-Data::Collector - Collect information from multiple sources - like Puppet's
-Facter
+Data::Collector - Collect information from multiple sources
 
 =head1 VERSION
 
@@ -140,8 +159,8 @@ Version 0.06
 
 =head1 SYNOPSIS
 
-This module collects various information from multiple sources and makes it
-available in different formats.
+Data::Collector collects various information from multiple sources and makes it
+available in different formats, similar to Puppet's Facter.
 
     use Data::Collector;
 
@@ -153,6 +172,9 @@ available in different formats.
 
     my %data = $collector->collect;
     ...
+
+Data::Collector uses I<Info>s to determine what information is collected. It
+then uses I<Serialize>rs to serialize that information.
 
 An important concept in Data::Collector is that it does not use any modules to
 fetch the information, only shell commands. This might seem like a pain at first
