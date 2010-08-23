@@ -1,4 +1,6 @@
+use strictures 1;
 package Data::Collector::Engine::Local;
+# ABSTRACT: An engine for Data::Collector that runs local commands
 
 use Moose;
 use IPC::System::Simple 'capture';
@@ -20,11 +22,6 @@ __PACKAGE__->meta->make_immutable;
 
 __END__
 
-=head1 NAME
-
-Data::Collector::Engine::Local - An engine for Data::Collector that runs local
-commands
-
 =head1 SYNOPSIS
 
     use Data::Collector;
@@ -38,8 +35,4 @@ This engine helps debugging Data::Collector better by running commands locally.
 =head2 run
 
 This functions runs the given command locally using IPC::System::Simple.
-
-=head1 AUTHOR
-
-Sawyer X, C<< <xsawyerx at cpan.org> >>
 

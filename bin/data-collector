@@ -1,8 +1,8 @@
 #!/usr/bin/perl
-use strict;
-use warnings;
+use strictures 1;
+package
+    data-collector;
 
-use lib 'lib';
 use Data::Collector::App;
 
 my $app = Data::Collector::App->new_with_options;

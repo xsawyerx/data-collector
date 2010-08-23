@@ -1,4 +1,6 @@
+use strictures 1;
 package Data::Collector::Info::CPU;
+# ABSTRACT: Fetch machine CPU information
 
 use Moose;
 use MooseX::StrictConstructor;
@@ -54,9 +56,7 @@ __PACKAGE__->meta->make_immutable;
 
 __END__
 
-=head1 NAME
-
-Data::Collector::Info::CPU - Fetch machine CPU information
+=head1 DESCRIPTION
 
 This info module fetches information about a machine's CPU using
 C</proc/meminfo>. It will not work on Solaris or Windows.
@@ -92,8 +92,4 @@ Returns the CPU flags.
 =head2 all
 
 Runs all methods and returns their result in a unified hashref.
-
-=head1 AUTHOR
-
-Sawyer X, C<< <xsawyerx at cpan.org> >>
 

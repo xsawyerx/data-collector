@@ -1,4 +1,6 @@
+use strictures 1;
 package Data::Collector::Info::IFaces;
+# ABSTRACT: Fetch machine interfaces information
 
 use Moose;
 use MooseX::StrictConstructor;
@@ -64,10 +66,6 @@ __PACKAGE__->meta->make_immutable;
 
 __END__
 
-=head1 NAME
-
-Data::Collector::Info::IFaces - Fetch machine interfaces information
-
 This info module fetches information about a machine's internet interfaces using
 C<ifconfig>. This should not work on Windows.
 
@@ -93,8 +91,4 @@ Returns the interfaces and their IPs.
 =head2 all
 
 Runs C<ifaces> method and returns their result in a unified hashref.
-
-=head1 AUTHOR
-
-Sawyer X, C<< <xsawyerx at cpan.org> >>
 

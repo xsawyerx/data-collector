@@ -1,4 +1,6 @@
+use strictures 1;
 package Data::Collector::Serializer::SmartXML;
+# ABSTRACT: A XML::Smart serializer for Data::Collector
 
 use Moose;
 use XML::Smart;
@@ -22,10 +24,7 @@ __PACKAGE__->meta->make_immutable;
 
 __END__
 
-=head1 NAME
-
-Data::Collector::Serializer::SmartXML - A XML::Smart serializer for
-Data::Collector
+=head1 DESCRIPTION
 
 Utilizes L<XML::Smart>.
 
@@ -35,6 +34,3 @@ Utilizes L<XML::Smart>.
 
 Gets data, serializes it and returns it.
 
-=head1 AUTHOR
-
-Sawyer X, C<< <xsawyerx at cpan.org> >>

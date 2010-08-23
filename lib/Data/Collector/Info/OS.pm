@@ -1,4 +1,6 @@
+use strictures 1;
 package Data::Collector::Info::OS;
+# ABSTRACT: Fetch machine OS information
 
 use Moose;
 use MooseX::StrictConstructor;
@@ -71,9 +73,7 @@ __PACKAGE__->meta->make_immutable;
 
 __END__
 
-=head1 NAME
-
-Data::Collector::Info::OS - Fetch machine OS information
+=head1 DESCRIPTION
 
 This info module fetches information about a machine's OS details using version
 files such as C</etc/redhat-release> for Red Hat or CentOS.
@@ -93,8 +93,4 @@ to register.
 =head2 all
 
 Fetches and returns the details in a unified hashref.
-
-=head1 AUTHOR
-
-Sawyer X, C<< <xsawyerx at cpan.org> >>
 

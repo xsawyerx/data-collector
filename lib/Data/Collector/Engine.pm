@@ -1,4 +1,6 @@
+use strictures 1;
 package Data::Collector::Engine;
+# ABSTRACT: A base class for collecting engines
 
 use Moose;
 use MooseX::StrictConstructor;
@@ -40,10 +42,6 @@ __PACKAGE__->meta->make_immutable;
 1;
 
 __END__
-
-=head1 NAME
-
-Data::Collector::Engine - A base class for collecting engines
 
 =head1 SYNOPSIS
 
@@ -147,8 +145,4 @@ A helper hybrid between C<file_exists> and C<run> to ease a common idiom:
 
     # do this:
     $engine->run_if_exists("$cmd $opts");
-
-=head1 AUTHOR
-
-Sawyer X, C<< <xsawyerx at cpan.org> >>
 

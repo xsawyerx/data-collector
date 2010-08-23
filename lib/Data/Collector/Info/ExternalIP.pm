@@ -1,4 +1,6 @@
+use strictures 1;
 package Data::Collector::Info::ExternalIP;
+# ABSTRACT: Fetch machine's external IP information
 
 use Carp;
 use Moose;
@@ -42,9 +44,7 @@ __PACKAGE__->meta->make_immutable;
 
 __END__
 
-=head1 NAME
-
-Data::Collector::Info::ExternalIP - Fetch machine's external IP information
+=head1 DESCRIPTION
 
 This info module fetches the external IP of a machine using the DynDNS URL
 L<http://checkip.dyndns.org>.
@@ -80,8 +80,4 @@ to register.
 =head2 all
 
 Returns a hashref with the key and the request result.
-
-=head1 AUTHOR
-
-Sawyer X, C<< <xsawyerx at cpan.org> >>
 

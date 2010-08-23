@@ -1,4 +1,6 @@
+use strictures 1;
 package Data::Collector;
+# ABSTRACT: Collect information from multiple sources
 
 use Carp;
 use Moose;
@@ -6,8 +8,6 @@ use MooseX::StrictConstructor;
 use MooseX::Types::Set::Object;
 use Module::Pluggable::Object;
 use namespace::autoclean;
-
-our $VERSION = '0.06';
 
 has 'format'        => ( is => 'ro', isa => 'Str',     default => 'JSON'     );
 has 'format_args'   => ( is => 'ro', isa => 'HashRef', default => sub { {} } );
@@ -149,14 +149,6 @@ __PACKAGE__->meta->make_immutable;
 
 __END__
 
-=head1 NAME
-
-Data::Collector - Collect information from multiple sources
-
-=head1 VERSION
-
-Version 0.06
-
 =head1 SYNOPSIS
 
 Data::Collector collects various information from multiple sources and makes it
@@ -277,10 +269,6 @@ This is merely a helper method. It simply runs:
 
 This is actually only a mere helper method.
 
-=head1 AUTHOR
-
-Sawyer X, C<< <xsawyerx at cpan.org> >>
-
 =head1 BUGS
 
 Please report any bugs or feature requests to C<bug-data-collector at rt.cpan.org>, or through
@@ -314,16 +302,4 @@ L<http://cpanratings.perl.org/d/Data-Collector>
 L<http://search.cpan.org/dist/Data-Collector/>
 
 =back
-
-=head1 ACKNOWLEDGEMENTS
-
-=head1 LICENSE AND COPYRIGHT
-
-Copyright 2010 Sawyer X.
-
-This program is free software; you can redistribute it and/or modify it
-under the terms of either: the GNU General Public License as published
-by the Free Software Foundation; or the Artistic License.
-
-See http://dev.perl.org/licenses/ for more information.
 

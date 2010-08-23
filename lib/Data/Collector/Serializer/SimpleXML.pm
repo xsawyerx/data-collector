@@ -1,4 +1,6 @@
+use strictures 1;
 package Data::Collector::Serializer::SimpleXML;
+# ABSTRACT: A XML::Simple serializer for Data::Collector
 
 use Moose;
 use XML::Simple;
@@ -16,10 +18,7 @@ __PACKAGE__->meta->make_immutable;
 
 __END__
 
-=head1 NAME
-
-Data::Collector::Serializer::SimpleXML - A XML::Simple serializer for
-Data::Collector
+=head1 DESCRIPTION
 
 Utilizes L<XML::Simple>.
 
@@ -29,6 +28,3 @@ Utilizes L<XML::Simple>.
 
 Gets data, serializes it and returns it.
 
-=head1 AUTHOR
-
-Sawyer X, C<< <xsawyerx at cpan.org> >>

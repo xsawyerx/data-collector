@@ -1,4 +1,6 @@
+use strictures 1;
 package Data::Collector::Serializer::DataDumper;
+# ABSTRACT: A Data::Dumper serializer for Data::Collector
 
 use Data::Dumper;
 use Moose;
@@ -16,10 +18,7 @@ __PACKAGE__->meta->make_immutable;
 
 __END__
 
-=head1 NAME
-
-Data::Collector::Serializer::DataDumper - A Data::Dumper serializer for
-Data::Collector
+=head1 DESCRIPTION
 
 Utilizes L<Data::Dumper>.
 
@@ -29,6 +28,3 @@ Utilizes L<Data::Dumper>.
 
 Gets data, serializes it and returns it.
 
-=head1 AUTHOR
-
-Sawyer X, C<< <xsawyerx at cpan.org> >>

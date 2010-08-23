@@ -1,4 +1,6 @@
+use strictures 1;
 package Data::Collector::Serializer::JSON;
+# ABSTRACT: A JSON serializer for Data::Collector
 
 use JSON;
 use Moose;
@@ -16,9 +18,7 @@ __PACKAGE__->meta->make_immutable;
 
 __END__
 
-=head1 NAME
-
-Data::Collector::Serializer::JSON - A JSON serializer for Data::Collector
+=head1 DESCRIPTION
 
 Utilizes L<JSON>.
 
@@ -28,6 +28,3 @@ Utilizes L<JSON>.
 
 Gets data, serializes it and returns it.
 
-=head1 AUTHOR
-
-Sawyer X, C<< <xsawyerx at cpan.org> >>

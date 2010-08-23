@@ -1,4 +1,6 @@
+use strictures 1;
 package Data::Collector::Engine::OpenSSH;
+# ABSTRACT: An OpenSSH engine for Data::Collector utilizing Net::OpenSSH
 
 use Moose;
 use Net::OpenSSH;
@@ -61,11 +63,6 @@ __PACKAGE__->meta->make_immutable;
 
 __END__
 
-=head1 NAME
-
-Data::Collector::Engine::OpenSSH - An OpenSSH engine for Data::Collector
-utilizing Net::OpenSSH
-
 =head1 SYNOPSIS
 
     use Data::Collector;
@@ -109,8 +106,4 @@ This method creates the Net::OpenSSH object and connects to the host.
 
 This functions runs the given command on the host using ssh and returns the
 results.
-
-=head1 AUTHOR
-
-Sawyer X, C<< <xsawyerx at cpan.org> >>
 

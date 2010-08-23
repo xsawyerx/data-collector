@@ -1,4 +1,6 @@
+use strictures 1;
 package Data::Collector::Info;
+# ABSTRACT: A base class for information classes
 
 use Moose;
 use MooseX::StrictConstructor;
@@ -59,10 +61,6 @@ __PACKAGE__->meta->make_immutable;
 1;
 
 __END__
-
-=head1 NAME
-
-Data::Collector::Info - A base class for information classes
 
 =head1 SYNOPSIS
 
@@ -166,8 +164,4 @@ else, you could subclass it.
 
 Unless you're pulling off something especially fancy, subclass the L<load>
 and use that instead - for the sake of clarity if not anything else.
-
-=head1 AUTHOR
-
-Sawyer X, C<< <xsawyerx at cpan.org> >>
 

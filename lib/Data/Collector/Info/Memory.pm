@@ -1,4 +1,6 @@
+use strictures 1;
 package Data::Collector::Info::Memory;
+# ABSTRACT: Fetch machine RAM information
 
 use Moose;
 use MooseX::StrictConstructor;
@@ -40,9 +42,7 @@ __PACKAGE__->meta->make_immutable;
 
 __END__
 
-=head1 NAME
-
-Data::Collector::Info::Memory - Fetch machine RAM information
+=head1 DESCRIPTION
 
 This info module fetches information about a machine's RAM status using
 C</proc/meminfo>. It will not work on Solaris or Windows.
@@ -70,8 +70,4 @@ Returns the free memory.
 =head2 all
 
 Runs both methods and returns their result in a unified hashref.
-
-=head1 AUTHOR
-
-Sawyer X, C<< <xsawyerx at cpan.org> >>
 

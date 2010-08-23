@@ -1,4 +1,6 @@
+use strictures 1;
 package Data::Collector::Serializer::YAML;
+# ABSTRACT: A YAML serializer for Data::Collector
 
 use YAML;
 use Moose;
@@ -16,9 +18,7 @@ __PACKAGE__->meta->make_immutable;
 
 __END__
 
-=head1 NAME
-
-Data::Collector::Serializer::YAML - A YAML serializer for Data::Collector
+=head1 DESCRIPTION
 
 Utilizes L<YAML>.
 
@@ -28,6 +28,3 @@ Utilizes L<YAML>.
 
 Gets data, serializes it and returns it.
 
-=head1 AUTHOR
-
-Sawyer X, C<< <xsawyerx at cpan.org> >>

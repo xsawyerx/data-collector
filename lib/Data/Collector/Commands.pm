@@ -1,4 +1,6 @@
+use strictures 1;
 package Data::Collector::Commands;
+# ABSTRACT: A role for commands to be used to collect data
 
 use Moose::Role;
 use namespace::autoclean;
@@ -27,8 +29,6 @@ has 'commands' => (
 __END__
 
 =head1 NAME
-
-Data::Collector::Commands - A role for commands to be used to collect data
 
 =head1 SYNOPSIS
 
@@ -63,6 +63,3 @@ Sets a command's explicit path.
 
 Gets a command's explicit path.
 
-=head1 AUTHOR
-
-Sawyer X, C<< <xsawyerx at cpan.org> >>

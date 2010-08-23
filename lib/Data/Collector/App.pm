@@ -1,4 +1,6 @@
+use strictures 1;
 package Data::Collector::App;
+# ABSTRACT: An application implementation for Data::Collector
 
 use Moose;
 use List::MoreUtils 'none';
@@ -102,12 +104,6 @@ __PACKAGE__->meta->make_immutable;
 
 __END__
 
-=head1 NAME
-
-Data::Collector::App - An application implementation for Data::Collector
-
-Using this implementation, one can write an application.
-
 =head1 SYNOPSIS
 
     use Data::Collector::App;
@@ -118,6 +114,8 @@ Using this implementation, one can write an application.
 This module integrates all the checks and logics of an application.
 
 It supports getopt command line parsing and optional configuration files.
+
+Using this implementation, one can write an application.
 
 =head1 ATTRIBUTES
 
@@ -178,6 +176,3 @@ file.
 Subroutine run after initialization. Used to create the C<info_args> attribute
 for the main C<Data::Collector>.
 
-=head1 AUTHOR
-
-Sawyer X, C<< <xsawyerx at cpan.org> >>
