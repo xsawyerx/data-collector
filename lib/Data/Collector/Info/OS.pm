@@ -35,6 +35,25 @@ has 'types' => (
                 return 1;
             },
         },
+
+        'Fedora' => {
+            name    => 'Linux',
+            file    => '/etc/redhat-release',
+            version => sub {
+                my ( $self, $data ) = @_;
+                $data   ||= q{};
+                my $regex = qr/
+                    ^Fedora \s release \s
+                    (\d+) (\.\d+)?
+                /x;
+
+                if ( $data =~ $regex ) {
+                    $self->os_version( $2 ? $1 . $2 : $1 );
+                }
+
+                return 1;
+            },
+        },
     } },
 );
 
