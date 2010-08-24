@@ -30,9 +30,8 @@ has 'types' => (
 
                 if ( $data =~ $regex ) {
                     $self->os_version( $2 ? $1 . $2 : $1 );
+                    return 1;
                 }
-
-                return 1;
             },
         },
 
@@ -49,9 +48,8 @@ has 'types' => (
 
                 if ( $data =~ $regex ) {
                     $self->os_version( $2 ? $1 . $2 : $1 );
+                    return 1;
                 }
-
-                return 1;
             },
         },
     } },

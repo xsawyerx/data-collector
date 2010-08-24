@@ -2,7 +2,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 16;
+use Test::More tests => 24;
 
 use Data::Collector::Info::OS;
 
@@ -14,15 +14,16 @@ my $found = 0;
     sub file_exists {
         isa_ok( $_[0], 'Data::Collector::Engine::Fake' );
         is( $_[1], '/etc/redhat-release', 'file_exists() redhat-release' );
-        $found++ or return 1;
+        $found++ > 2 or return 1;
         return;
     }
 
     sub run {
         isa_ok( $_[0], 'Data::Collector::Engine::Fake' );
         is( $_[1], '/bin/cat /etc/redhat-release', 'run() cat redhat-release' );
-        $found or return 'OS';
-        return;
+        $found > 2 or return 'CentOS release 4.5';
+    return;
+#        return 'CentOS release 4.5';
     }
 }
 
@@ -30,8 +31,7 @@ my $fake = Data::Collector::Engine::Fake->new;
 
 {
     my $info = Data::Collector::Info::OS->new(
-        raw_data => 'ack',
-        engine   => $fake,
+        engine => $fake,
     );
 
     isa_ok( $info, 'Data::Collector::Info::OS' );
@@ -40,9 +40,9 @@ my $fake = Data::Collector::Engine::Fake->new;
 
     cmp_ok( scalar keys ( %{$data} ), '==', 3, 'Correct number of keys' );
 
-    is(   $data->{'os_name'   }, 'Linux',  'os_name'   );
-    is(   $data->{'os_distro' }, 'CentOS', 'os_distro' );
-    ok( ! $data->{'os_version'}, 'No os_version' );
+    is( $data->{'os_name'   }, 'Linux',  'os_name'       );
+    is( $data->{'os_distro' }, 'CentOS', 'os_distro'     );
+    is( $data->{'os_version'}, '4.5',    'No os_version' );
 }
 
 Data::Collector::Info->unregister( qw/
