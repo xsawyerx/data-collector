@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 use strictures 1;
 package
-    data-collector;
+    datacollector;
 
 use Data::Collector::App;
 

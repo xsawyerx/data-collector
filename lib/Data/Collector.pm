@@ -269,6 +269,18 @@ This is merely a helper method. It simply runs:
 
 This is actually only a mere helper method.
 
+=head2 BUILD
+
+Internal initialize subroutine that sets the default OS to CentOS.
+
+=head2 load_info
+
+Loads all the infos available.
+
+=head2 load_os
+
+Currently not being used.
+
 =head1 BUGS
 
 Please report any bugs or feature requests to C<bug-data-collector at rt.cpan.org>, or through

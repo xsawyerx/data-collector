@@ -107,3 +107,8 @@ This method creates the Net::OpenSSH object and connects to the host.
 This functions runs the given command on the host using ssh and returns the
 results.
 
+=head2 pipe
+
+Pipes your request to the command. Gets the command to run, returns the output
+of that command.
+

@@ -1,8 +1,10 @@
 Revision history for Data-Collector
 
-0.07    23.08.10
+0.07    24.08.10
         * Engine doesn't have to set connected() anymore.
         * Resolved GH #1.
+        * Added "pipe" cmd to OpenSSH engine
+        * Probably other stuff...
 
 0.06    13.04.10
         * Resolved GH #8.
