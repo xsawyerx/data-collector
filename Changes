@@ -1,5 +1,8 @@
 Revision history for Data-Collector
 
+0.08    24.08.10
+        * Adding Fedora recognition
+
 0.07    24.08.10
         * Engine doesn't have to set connected() anymore.
         * Resolved GH #1.
