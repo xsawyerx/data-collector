@@ -1,5 +1,11 @@
 Revision history for Data-Collector
 
+0.09    26.08.10
+        * No more bundled Infos for now. You should remove previous installed
+            with App::pmuninstall
+        * Cleaned up a few tests
+        * Not requiring XML::* for those sample serializers
+
 0.08    24.08.10
         * Adding Fedora recognition
 
