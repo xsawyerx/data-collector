@@ -6,8 +6,6 @@ use warnings;
 use Test::More tests => 1;
 use Test::Exception;
 
-use Data::Collector::Info::Memory;
-
 {
     package Data::Collector::Info::One;
     use Moose;
