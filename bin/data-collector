@@ -2,6 +2,7 @@
 use strictures 1;
 package
     datacollector;
+# ABSTRACT: command line interface for Data::Collector via Data::Collector::App
 
 use Data::Collector::App;
 
