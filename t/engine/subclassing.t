@@ -9,13 +9,8 @@ use Test::Exception;
 
 use Sub::Override;
 use Data::Collector;
-use Data::Collector::Info::ExternalIP;
 
 my $sub = Sub::Override->new;
-
-$sub->replace( 'Data::Collector::Info::ExternalIP::_build_raw_data' => sub {
-    return '1.1.1.1';
-} );
 
 {
     my $collector = Data::Collector->new( engine => 'MyTest' );
