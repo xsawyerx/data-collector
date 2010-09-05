@@ -1,6 +1,6 @@
 Revision history for Data-Collector
 
-0.10
+0.10    05.09.10
         * strictures needs indirect installed, adding it to dist.ini
 
 0.09    26.08.10
