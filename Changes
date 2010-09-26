@@ -1,5 +1,9 @@
 Revision history for Data-Collector
 
+0.11    26.09.10
+        * Allowing homefolder configuration (~/.data_collector.yaml)
+        * Fixing non-existent global configuration file missing bug
+
 0.10    05.09.10
         * strictures needs indirect installed, adding it to dist.ini
 
