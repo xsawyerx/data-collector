@@ -27,10 +27,21 @@ my $sub = Sub::Override->new;
 }
 
 {
+    package Data::Collector::Info::EG;
+    use Moose;
+    extends 'Data::Collector::Info';
+    sub info_keys { [] }
+    sub all       { {} }
+}
+
+{
     my $engine = Data::Collector::Engine::MyTest->new();
     isa_ok( $engine, 'Data::Collector::Engine::MyTest' );
 
-    my $collector = Data::Collector->new( engine_object => $engine );
+    my $collector = Data::Collector->new(
+        infos         => ['EG'],
+        engine_object => $engine
+    );
 
     isa_ok( $collector, 'Data::Collector' );
     isa_ok( $collector->engine_object, 'Data::Collector::Engine::MyTest' );
