@@ -16,13 +16,25 @@ my $sub = Sub::Override->new;
     package Data::Collector::Engine::MyTest;
     use Moose;
     extends 'Data::Collector::Engine';
-    sub run   {1}
+    sub run {1}
+}
+
+{
+    package Data::Collector::Info::EG;
+    use Moose;
+    extends 'Data::Collector::Info';
+    sub info_keys { [] }
+    sub all       { {} }
 }
 
 my $engine = Data::Collector::Engine::MyTest->new();
 isa_ok( $engine, 'Data::Collector::Engine::MyTest' );
 
-my $collector = Data::Collector->new( engine_object => $engine );
+my $collector = Data::Collector->new(
+    infos         => ['EG'],
+    engine_object => $engine,
+);
+
 isa_ok( $collector, 'Data::Collector' );
 
 lives_ok { $collector->collect } 'Collecting once';
