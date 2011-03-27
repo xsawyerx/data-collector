@@ -1,5 +1,8 @@
 Revision history for Data-Collector
 
+0.12    27.03.11
+        * Only update collected data hash if you get data from the info.
+
 0.11    26.09.10
         * Allowing homefolder configuration (~/.data_collector.yaml)
         * Fixing non-existent global configuration file missing bug
