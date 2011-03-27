@@ -126,7 +126,7 @@ sub load_info {
 
     my %data = %{ $info->all() };
 
-    $self->add_data(%data);
+    %data and $self->add_data(%data);
 }
 
 sub serialize {
