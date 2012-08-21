@@ -3,6 +3,7 @@ package Data::Collector::App;
 # ABSTRACT: An application implementation for Data::Collector
 
 use Moose;
+use File::HomeDir;
 use List::MoreUtils 'none';
 use Module::Pluggable::Object;
 use MooseX::Types::Path::Class 'File';
