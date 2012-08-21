@@ -3,6 +3,7 @@ package Data::Collector::App;
 # ABSTRACT: An application implementation for Data::Collector
 
 use Moose;
+use File::Spec;
 use File::HomeDir;
 use List::MoreUtils 'none';
 use Module::Pluggable::Object;
@@ -17,7 +18,7 @@ has '+configfile' => (
     isa     => 'Maybe[MooseX::Types::Path::Class::File]',
     default => sub {
         my @files = (
-            file( File::HomeDir->my_home, '.data_collector.yaml' ),
+            File::Spec->catfile( File::HomeDir->my_home, '.data_collector.yaml' ),
             '/etc/data_collector.yaml',
         );
 
