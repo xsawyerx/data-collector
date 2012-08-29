@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 use Test::More tests => 12;
-use Test::Exception;
+use Test::Fatal;
 
 use Sub::Override;
 use Data::Collector::Info;
@@ -17,13 +17,31 @@ is( $info->load, 1, 'load() return value' );
 
 $sub->restore;
 
-throws_ok { $info->info_keys } qr/^No default info_keys method/;
-throws_ok { $info->all       } qr/^No default all method/;
+like(
+    exception { $info->info_keys },
+    qr/^No default info_keys method/,
+    'No default info_keys method',
+);
+
+like(
+    exception { $info->all },
+    qr/^No default all method/,
+    'No default all method',
+);
 
 $info->register('key');
-throws_ok { $info->register('key') } qr/^Sorry, key already reserved/;
+like(
+    exception { $info->register('key') },
+    qr/^Sorry, key already reserved/,
+    'Sorry, key already reserved',
+);
+
 $info->clear_registry();
-lives_ok { $info->register('key') } 'Registry cleared';
+is(
+    exception { $info->register('key') },
+    undef,
+    'Registry cleared',
+);
 
 my $found = 0;
 
@@ -37,10 +55,12 @@ my $found = 0;
     };
 }
 
-lives_ok {
-    $info = Data::Collector::Info->new;
-} 'No problem if $INFO_MODULES->contains() actually contains';
+is(
+    exception { $info = Data::Collector::Info->new },
+    undef,
+    'No problem if $INFO_MODULES->contains() actually contains',
+);
 
 $found++;
 
-dies_ok { $info->BUILD } 'Dies';
+ok( exception { $info->BUILD }, 'Dies' );
