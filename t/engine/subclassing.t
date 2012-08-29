@@ -13,17 +13,6 @@ use Data::Collector;
 my $sub = Sub::Override->new;
 
 {
-    my $collector = Data::Collector->new( engine => 'MyTest' );
-
-    isa_ok( $collector, 'Data::Collector' );
-    is(
-        exception { $collector->collect },
-        'No default run method',
-        'No default run method',
-    );
-}
-
-{
     package Data::Collector::Engine::MyTest;
     use Moose;
     extends 'Data::Collector::Engine';
@@ -36,6 +25,16 @@ my $sub = Sub::Override->new;
     extends 'Data::Collector::Info';
     sub info_keys { [] }
     sub all       { {} }
+}
+
+{
+    my $collector = Data::Collector->new( engine => 'NoExist' );
+
+    isa_ok( $collector, 'Data::Collector' );
+    ok(
+        exception { $collector->collect },
+        'Cannot load nonexistent engine class',
+    );
 }
 
 {
@@ -64,9 +63,9 @@ my $sub = Sub::Override->new;
 {
     my $engine = Data::Collector::Engine->new;
     isa_ok( $engine, 'Data::Collector::Engine' );
-    is(
+    like(
         exception { $engine->run },
-        'No default run method',
+        qr/^No default run method/,
         'No default run method',
     );
 
