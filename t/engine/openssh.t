@@ -3,7 +3,7 @@ use strict;
 use warnings;
 
 use Test::More tests => 13;
-use Test::Exception;
+use Test::Fatal;
 
 use Sub::Override;
 use Data::Collector::Engine::OpenSSH;
@@ -24,12 +24,20 @@ $sub->replace( 'Net::OpenSSH::error'   => sub {
     return 'fake problem';
 } );
 
-throws_ok { $engine->connect }
-    qr/OpenSSH Engine connect failed: fake problem at/;
+like(
+    exception { $engine->connect },
+    qr/OpenSSH Engine connect failed: fake problem at/,
+    'OpenSSH engine connect failed',
+);
 
 $sub->replace( 'Net::OpenSSH::error'   => sub {0} );
 
-lives_ok { $engine->connect } 'Connected without a problem';
+is(
+    exception { $engine->connect },
+    undef,
+    'Connected without a problem',
+);
+
 isa_ok( $engine->ssh, 'Net::OpenSSH', 'connect() set Net::OpenSSH object' );
 
 $sub->replace( 'Net::OpenSSH::capture' => sub {

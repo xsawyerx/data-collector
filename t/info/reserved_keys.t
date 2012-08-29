@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 use Test::More tests => 1;
-use Test::Exception;
+use Test::Fatal;
 
 {
     package Data::Collector::Info::One;
@@ -19,9 +19,14 @@ use Test::Exception;
 }
 
 my $info;
-throws_ok {
-    $info = Data::Collector::Info::One->new();
-    $info = Data::Collector::Info::Two->new();
-} qr/^Sorry, key already reserved/;
+
+like(
+    exception {
+        $info = Data::Collector::Info::One->new();
+        $info = Data::Collector::Info::Two->new();
+    },
+    qr/^Sorry, key already reserved/,
+    'Key already reserved',
+);
 
 

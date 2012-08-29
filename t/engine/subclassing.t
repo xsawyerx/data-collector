@@ -5,19 +5,12 @@ use strict;
 use warnings;
 
 use Test::More tests => 12;
-use Test::Exception;
+use Test::Fatal;
 
 use Sub::Override;
 use Data::Collector;
 
 my $sub = Sub::Override->new;
-
-{
-    my $collector = Data::Collector->new( engine => 'MyTest' );
-
-    isa_ok( $collector, 'Data::Collector' );
-    dies_ok { $collector->collect } qr/^No default run method$/;
-}
 
 {
     package Data::Collector::Engine::MyTest;
@@ -32,6 +25,16 @@ my $sub = Sub::Override->new;
     extends 'Data::Collector::Info';
     sub info_keys { [] }
     sub all       { {} }
+}
+
+{
+    my $collector = Data::Collector->new( engine => 'NoExist' );
+
+    isa_ok( $collector, 'Data::Collector' );
+    ok(
+        exception { $collector->collect },
+        'Cannot load nonexistent engine class',
+    );
 }
 
 {
@@ -60,7 +63,11 @@ my $sub = Sub::Override->new;
 {
     my $engine = Data::Collector::Engine->new;
     isa_ok( $engine, 'Data::Collector::Engine' );
-    dies_ok { $engine->run } qr/^No default run method$/;
+    like(
+        exception { $engine->run },
+        qr/^No default run method/,
+        'No default run method',
+    );
 
     my ( $connect, $disconnect );
 
