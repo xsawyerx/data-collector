@@ -25,7 +25,6 @@ has 'data' => (
     isa     => 'HashRef',
     traits  => ['Hash'],
     default => sub { {} },
-    handles => { add_data => 'set' },
 );
 
 has 'infos' => (
@@ -126,7 +125,10 @@ sub load_info {
 
     my %data = %{ $info->all() };
 
-    $self->add_data(%data);
+    $self->data(
+        %{ $self->data },
+        %data,
+    );
 }
 
 sub serialize {
