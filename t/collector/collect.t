@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 use Test::More tests => 6;
-use Test::Exception;
+use Test::Fatal;
 
 use Sub::Override;
 use Data::Collector;
@@ -37,20 +37,34 @@ my $collector = Data::Collector->new(
 
 isa_ok( $collector, 'Data::Collector' );
 
-lives_ok { $collector->collect } 'Collecting once';
+is(
+    exception { $collector->collect },
+    undef,
+    'Collecting once',
+);
 
 $engine->connected(1);
 
-lives_ok { $collector->collect } 'Collecting again';
+is(
+    exception { $collector->collect },
+    undef,
+    'Collecting again',
+);
 
 # fake some engine to allow testing of loading
-lives_ok {
-    $collector = Data::Collector->new(
-        engine      => 'OpenSSH',
-        engine_args => { host => 'heraldo' },
-    );
-} 'New collector without problems';
+is(
+    exception {
+        $collector = Data::Collector->new(
+            engine      => 'OpenSSH',
+            engine_args => { host => 'heraldo' },
+        );
+    },
+    undef,
+    'New collector without problems',
+);
 
-lives_ok {
-    $collector->engine_object;
-} 'Build engine successfully';
+is(
+    exception { $collector->engine_object },
+    undef,
+    'Build engine successfully',
+);

@@ -1,5 +1,13 @@
 Revision history for Data-Collector
 
+0.13    29.09.12
+        * Clean up code.
+        * Clean up tests.
+
+0.12    21.08.12
+        * Caused some breakaged by not completely copy-pasting stuff.
+          (thanks, Peter Sørensen)
+
 0.12    27.03.11
         * Only update collected data hash if you get data from the info.
 

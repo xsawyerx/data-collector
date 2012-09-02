@@ -5,7 +5,6 @@ use strict;
 use warnings;
 
 use Test::More tests => 4;
-use Test::Exception;
 
 use Data::Collector::Engine;
 

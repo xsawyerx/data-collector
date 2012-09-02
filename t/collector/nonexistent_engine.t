@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 use Test::More tests => 3;
-use Test::Exception;
+use Test::Fatal;
 
 use Data::Collector;
 
@@ -12,13 +12,19 @@ use Data::Collector;
 my $collector;
 
 # engine is lazy
-lives_ok {
-    $collector = Data::Collector->new( engine => 'J7fhZd90aZZ' );
-} 'Creating collector object';
+is(
+    exception {
+        $collector = Data::Collector->new( engine => 'J7fhZd90aZZ' );
+    },
+    undef,
+    'Creating collector object',
+);
 
 isa_ok( $collector, 'Data::Collector' );
 
-throws_ok {
-    $collector->engine_object;
-} qr/^Can't load engine/;
+like(
+    exception { $collector->engine_object },
+    qr/^Can't load engine/,
+    'Can\'t load engine',
+);
 

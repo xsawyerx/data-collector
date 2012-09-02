@@ -7,6 +7,7 @@ use Moose;
 use MooseX::StrictConstructor;
 use MooseX::Types::Set::Object;
 use Module::Pluggable::Object;
+use Class::Load 'try_load_class';
 use namespace::autoclean;
 
 has 'format'        => ( is => 'ro', isa => 'Str',     default => 'JSON'     );
@@ -25,7 +26,6 @@ has 'data' => (
     isa     => 'HashRef',
     traits  => ['Hash'],
     default => sub { {} },
-    handles => { add_data => 'set' },
 );
 
 has 'infos' => (
@@ -54,10 +54,10 @@ sub _build_engine_object {
     my $type  = $self->engine;
     my $class = "Data::Collector::Engine::$type";
 
-    eval "use $class";
-    $@ && die "Can't load engine '$class': $@";
+    my ( $res, $reason ) = try_load_class($class);
+    $res or die "Can't load engine: $reason\n";
 
-    return "Data::Collector::Engine::$type"->new( %{ $self->engine_args } );
+    return $class->new( %{ $self->engine_args } );
 }
 
 sub BUILD {
@@ -126,7 +126,10 @@ sub load_info {
 
     my %data = %{ $info->all() };
 
-    %data and $self->add_data(%data);
+    %data and $self->data
+        %{ $self->data },
+        %data,
+    );
 }
 
 sub serialize {
