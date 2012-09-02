@@ -1,10 +1,8 @@
-use strictures 1;
 package Data::Collector::Serializer::DataDumper;
 # ABSTRACT: A Data::Dumper serializer for Data::Collector
 
 use Data::Dumper;
 use Moose;
-use MooseX::StrictConstructor;
 use namespace::autoclean;
 
 sub serialize {

@@ -1,10 +1,8 @@
-use strictures 1;
 package Data::Collector::Serializer::JSON;
 # ABSTRACT: A JSON serializer for Data::Collector
 
 use JSON;
 use Moose;
-use MooseX::StrictConstructor;
 use namespace::autoclean;
 
 sub serialize {

@@ -1,4 +1,3 @@
-use strictures 1;
 package Data::Collector::App;
 # ABSTRACT: An application implementation for Data::Collector
 
@@ -106,7 +105,7 @@ sub run {
     my $data = $collector->collect;
 
     if ( $self->has_output ) {
-        my $file = $self->output;        
+        my $file = $self->output;
         write_file( $file, $data );
     } else {
         print "$data\n";

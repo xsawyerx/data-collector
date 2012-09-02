@@ -1,10 +1,8 @@
-use strictures 1;
 package Data::Collector::Engine::Local;
 # ABSTRACT: An engine for Data::Collector that runs local commands
 
 use Moose;
 use IPC::System::Simple 'capture';
-use MooseX::StrictConstructor;
 use namespace::autoclean;
 
 extends 'Data::Collector::Engine';

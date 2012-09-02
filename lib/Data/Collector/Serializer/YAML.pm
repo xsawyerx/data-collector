@@ -1,10 +1,8 @@
-use strictures 1;
 package Data::Collector::Serializer::YAML;
 # ABSTRACT: A YAML serializer for Data::Collector
 
 use YAML;
 use Moose;
-use MooseX::StrictConstructor;
 use namespace::autoclean;
 
 sub serialize {

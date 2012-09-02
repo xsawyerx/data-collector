@@ -1,9 +1,7 @@
-use strictures 1;
 package Data::Collector::Info;
 # ABSTRACT: A base class for information classes
 
 use Moose;
-use MooseX::StrictConstructor;
 use namespace::autoclean;
 
 use Carp;

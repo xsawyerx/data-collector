@@ -1,10 +1,8 @@
-use strictures 1;
 package Data::Collector::Serializer::SmartXML;
 # ABSTRACT: A XML::Smart serializer for Data::Collector
 
 use Moose;
 use XML::Smart;
-use MooseX::StrictConstructor;
 use namespace::autoclean;
 
 sub serialize {

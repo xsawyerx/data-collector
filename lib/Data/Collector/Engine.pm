@@ -1,9 +1,7 @@
-use strictures 1;
 package Data::Collector::Engine;
 # ABSTRACT: A base class for collecting engines
 
 use Moose;
-use MooseX::StrictConstructor;
 use namespace::autoclean;
 
 with 'Data::Collector::Commands';

@@ -1,4 +1,3 @@
-use strictures 1;
 package Data::Collector::Commands;
 # ABSTRACT: A role for commands to be used to collect data
 

@@ -1,10 +1,8 @@
-use strictures 1;
 package Data::Collector::Engine::OpenSSH;
 # ABSTRACT: An OpenSSH engine for Data::Collector utilizing Net::OpenSSH
 
 use Moose;
 use Net::OpenSSH;
-use MooseX::StrictConstructor;
 use namespace::autoclean;
 
 extends 'Data::Collector::Engine';

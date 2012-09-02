@@ -4,6 +4,7 @@ Revision history for Data-Collector
         * Clean up merge mess.
         * Merge stuff from both 0.12 versions.
           (only update if data changes)
+        * Remove strictures, MooseX::StrictConstructor.
 
 0.13    29.08.12
         * Clean up code.

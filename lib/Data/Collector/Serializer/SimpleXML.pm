@@ -1,10 +1,8 @@
-use strictures 1;
 package Data::Collector::Serializer::SimpleXML;
 # ABSTRACT: A XML::Simple serializer for Data::Collector
 
 use Moose;
 use XML::Simple;
-use MooseX::StrictConstructor;
 use namespace::autoclean;
 
 sub serialize {

@@ -1,10 +1,8 @@
-use strictures 1;
 package Data::Collector;
 # ABSTRACT: Collect information from multiple sources
 
 use Carp;
 use Moose;
-use MooseX::StrictConstructor;
 use MooseX::Types::Set::Object;
 use Module::Pluggable::Object;
 use Class::Load 'try_load_class';
@@ -126,7 +124,7 @@ sub load_info {
 
     my %data = %{ $info->all() };
 
-    %data and $self->data
+    %data and $self->data(
         %{ $self->data },
         %data,
     );
