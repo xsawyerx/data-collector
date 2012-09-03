@@ -124,10 +124,10 @@ sub load_info {
 
     my %data = %{ $info->all() };
 
-    %data and $self->data(
+    %data and $self->data( {
         %{ $self->data },
         %data,
-    );
+    } );
 }
 
 sub serialize {
