@@ -1,5 +1,8 @@
 Revision history for Data-Collector
 
+0.15    03.09.12
+        * Fix changes to data attribute.
+
 0.14    02.09.12
         * Clean up merge mess.
         * Merge stuff from both 0.12 versions.
